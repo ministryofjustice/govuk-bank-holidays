@@ -1,0 +1,106 @@
+# GOV.UK Bank Holidays
+msgid ""
+msgstr ""
+"Project-Id-Version: govuk_bank_holidays\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-07 17:43+0000\n"
+"PO-Revision-Date: 2016-11-02 13:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: govuk_bank_holidays/i18n.py:8
+msgid "Bank holiday"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:9
+msgid "Bank holidays"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:11
+msgid "England"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:12
+msgid "Wales"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:13
+msgid "England and Wales"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:14
+msgid "Scotland"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:15
+msgid "Northern Ireland"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:16
+msgid "United Kingdom"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:18
+msgid "2nd January"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:19
+msgid "Battle of the Boyne (Orangemen’s Day)"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:20
+msgid "Boxing Day"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:21
+msgid "Christmas Day"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:22
+msgid "Early May bank holiday"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:23
+msgid "Easter Monday"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:24
+msgid "Good Friday"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:25
+msgid "New Year’s Day"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:26
+msgid "Queen’s Diamond Jubilee"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:27
+msgid "Spring bank holiday"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:28
+msgid "St Andrew’s Day"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:29
+msgid "St Patrick’s Day"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:30
+msgid "Summer bank holiday"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:32
+msgid "Extra bank holiday"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:33
+msgid "Substitute day"
+msgstr ""

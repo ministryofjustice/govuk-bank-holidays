@@ -16,10 +16,10 @@ from govuk_bank_holidays.bank_holidays import BankHolidays
 
 class BankHolidayTestCase(unittest.TestCase):
     @classmethod
-    def get_bank_holidays_using_local_data(cls):
+    def get_bank_holidays_using_local_data(cls, **kwargs):
         with responses.RequestsMock() as rsps:
             rsps.add(rsps.GET, BankHolidays.source_url, json=BankHolidays.load_backup_data())
-            return BankHolidays()
+            return BankHolidays(**kwargs)
 
     def assertExpectedFormat(self, holidays):
         last_holiday = None
@@ -95,6 +95,13 @@ class BankHolidayTestCase(unittest.TestCase):
             bank_holidays = BankHolidays()
         mock_logger.warning.assert_called_once_with('Using backup bank holiday data')
         self.assertTrue(bank_holidays.get_holidays())
+
+    def test_localisation(self):
+        bank_holidays = self.get_bank_holidays_using_local_data(locale='cy')
+        holidays = bank_holidays.get_holidays(division=BankHolidays.ENGLAND_AND_WALES)
+        holiday_names = set(holiday['title'] for holiday in holidays)
+        self.assertIn('Dydd Nadolig', holiday_names)
+        self.assertNotIn('Christmas Day', holiday_names)
 
 
 class CodeStyleTestCase(unittest.TestCase):
