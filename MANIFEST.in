@@ -1,0 +1,3 @@
+include LICENSE.txt
+include README.rst
+include govuk_bank_holidays/bank-holidays.json
