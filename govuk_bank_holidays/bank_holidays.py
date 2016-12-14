@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import datetime
+import gettext
 import json
 import logging
 import os
@@ -29,19 +30,35 @@ class BankHolidays(object):
         with open(os.path.join(os.path.dirname(__file__), 'bank-holidays.json')) as f:
             return json.load(f)
 
-    def __init__(self):
+    def __init__(self, locale=None):
+        """
+        Load UK bank holidays
+        :param locale: the locale into which holidays should be translated; defaults to no translation
+        """
         try:
             data = requests.get(self.source_url).json()
         except (requests.RequestException, ValueError):
             logger.warning('Using backup bank holiday data')
             data = self.load_backup_data()
 
+        if locale:
+            trans = gettext.translation('messages', fallback=True, languages=[locale],
+                                        localedir=os.path.join(os.path.dirname(__file__), 'locale'))
+        else:
+            trans = gettext.NullTranslations()
+        trans = trans.ugettext if hasattr(trans, 'ugettext') else trans.gettext
+
+        def _(text):
+            if not text:
+                return text
+            return trans(text)
+
         def map_holiday(holiday):
             try:
                 return {
-                    'title': holiday['title'],
+                    'title': _(holiday['title']),
                     'date': datetime.datetime.strptime(holiday['date'], '%Y-%m-%d').date(),
-                    'notes': holiday.get('notes', ''),
+                    'notes': _(holiday.get('notes', '')),
                     'bunting': bool(holiday.get('bunting')),
                 }
             except (KeyError, ValueError):

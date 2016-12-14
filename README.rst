@@ -15,14 +15,20 @@ Install using ``pip install govuk-bank-holidays``. Sample usage:
         print(bank_holiday['title'], '>', bank_holiday['date'])
     print(bank_holidays.get_next_holiday())
 
+    # choose a different locale for holiday titles and notes
+    bank_holidays = BankHolidays(locale='cy')
+
 Development
 -----------
 
 Please report bugs and open pull requests on `GitHub`_.
 
-Use ``python setup.py test`` to run all tests.
+Update translation files using ``python setup.py makemessages``, e.g. when updating the i18n module or when adding new languages.
+Compile them using ``python setup.py compilemessages``; this is *required* before testing and distribution.
 
-Distribute a new version by updating the ``VERSION`` tuple in ``govuk_bank_holidays`` and run ``python setup.py sdist upload``.
+Use ``python setup.py compilemessages test`` to run all tests.
+
+Distribute a new version by updating the ``VERSION`` tuple in ``govuk_bank_holidays`` and run ``python setup.py compilemessages sdist upload``.
 
 Copyright
 ---------

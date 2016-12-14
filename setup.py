@@ -18,12 +18,15 @@ tests_require = ['flake8', 'responses']
 if sys.version_info[0:2] < (3, 4):
     tests_require.append('mock')
 
+setup_extensions = importlib.import_module('setup_extensions')
+
 setup(
     name='govuk-bank-holidays',
     version=package_info.__version__,
     author=package_info.__author__,
     url='https://github.com/ministryofjustice/govuk-bank-holidays',
     packages=['govuk_bank_holidays'],
+    py_modules=['setup_extensions'],
     include_package_data=True,
     license='MIT',
     description='Tool to load UK bank holidays from GOV.UK',
@@ -41,6 +44,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
+    cmdclass=setup_extensions.command_classes,
     install_requires=install_requires,
     tests_require=tests_require,
     test_suite='tests',
