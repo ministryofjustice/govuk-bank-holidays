@@ -28,12 +28,13 @@ Compile them using ``python setup.py compilemessages``; this is *required* befor
 
 Use ``python setup.py compilemessages test`` to run all tests.
 
-Distribute a new version by updating the ``VERSION`` tuple in ``govuk_bank_holidays`` and run ``python setup.py compilemessages sdist upload``.
+Distribute a new version by updating the ``VERSION`` tuple in ``govuk_bank_holidays`` and
+run ``python setup.py compilemessages sdist bdist_wheel upload``.
 
 Copyright
 ---------
 
-Copyright |copy| 2016 HM Government (Ministry of Justice Digital Services). See LICENSE.txt for further details.
+Copyright © 2017 HM Government (Ministry of Justice Digital Services).
+See LICENSE.txt for further details.
 
-.. |copy| unicode:: 0xA9 .. copyright symbol
 .. _GitHub: https://github.com/ministryofjustice/govuk-bank-holidays

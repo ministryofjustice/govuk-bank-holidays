@@ -14,7 +14,7 @@ class MessagesCommand(setuptools.Command):
         super(MessagesCommand, self).__init__(*args, **kwargs)
         self.domain = 'messages'
         self.cwd = os.getcwd()
-        self.root_path = os.path.join(os.path.dirname(__file__))
+        self.root_path = os.path.join(os.path.dirname(__file__), os.pardir)
         self.app_path = 'govuk_bank_holidays'
         self.locale_path = os.path.join(self.app_path, 'locale')
         self.pot_name = '%s.pot' % self.domain

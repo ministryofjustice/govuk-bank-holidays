@@ -2,14 +2,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import datetime
-import subprocess
+import os
+import sys
 import unittest
 
+from flake8.main import application
 try:
     from unittest import mock
 except ImportError:
     import mock
 import responses
+import six
 
 from govuk_bank_holidays.bank_holidays import BankHolidays
 
@@ -105,11 +108,21 @@ class BankHolidayTestCase(unittest.TestCase):
 
 
 class CodeStyleTestCase(unittest.TestCase):
-    def test_code_style(self):
+    def test_app_python_code_style(self):
+        current_path = os.getcwd()
+        root_path = os.path.dirname(os.path.dirname(__file__))
+        stdout, stderr = sys.stdout, sys.stderr
         try:
-            subprocess.check_output(['flake8'])
-        except subprocess.CalledProcessError as e:
-            self.fail('Code style checks failed\n%s' % e.output.decode('utf-8'))
+            os.chdir(root_path)
+            output = six.StringIO()
+            sys.stdout, sys.stderr = output, output
+            app = application.Application()
+            app.run()
+            if app.result_count:
+                self.fail('Code style errors:\n%s' % output.getvalue())
+        finally:
+            sys.stdout, sys.stderr = stdout, stderr
+            os.chdir(current_path)
 
 
 if __name__ == '__main__':
