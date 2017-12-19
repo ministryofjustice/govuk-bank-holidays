@@ -2,14 +2,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import datetime
-import subprocess
+import os
+import sys
 import unittest
 
+from flake8.main import application
 try:
     from unittest import mock
 except ImportError:
     import mock
 import responses
+import six
 
 from govuk_bank_holidays.bank_holidays import BankHolidays
 
@@ -36,16 +39,16 @@ class BankHolidayTestCase(unittest.TestCase):
     def test_holidays(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
         holidays = bank_holidays.get_holidays()
-        self.assertEqual(len(holidays), 37)
+        self.assertEqual(len(holidays), 49)
         self.assertExpectedFormat(holidays)
 
     def test_holidays_for_division(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
         holidays = bank_holidays.get_holidays(division=BankHolidays.ENGLAND_AND_WALES)
-        self.assertEqual(len(holidays), 49)
+        self.assertEqual(len(holidays), 65)
         self.assertExpectedFormat(holidays)
         holidays = bank_holidays.get_holidays(division=BankHolidays.SCOTLAND)
-        self.assertEqual(len(holidays), 55)
+        self.assertEqual(len(holidays), 73)
         self.assertExpectedFormat(holidays)
         self.assertIn(u'St Andrew\u2019s Day', map(lambda holiday: holiday['title'], holidays))
 
@@ -88,12 +91,49 @@ class BankHolidayTestCase(unittest.TestCase):
         self.assertFalse(bank_holidays.is_holiday(datetime.date(2016, 1, 4)))
         self.assertTrue(bank_holidays.is_holiday(datetime.date(2016, 1, 4), division=BankHolidays.SCOTLAND))
 
+    def test_next_work_day(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        self.assertEqual(
+            bank_holidays.get_next_work_day(date=datetime.date(2017, 12, 19)),
+            datetime.date(2017, 12, 20)
+        )
+        self.assertEqual(
+            bank_holidays.get_next_work_day(date=datetime.date(2017, 12, 22)),
+            datetime.date(2017, 12, 27)
+        )
+        self.assertEqual(
+            bank_holidays.get_next_work_day(date=datetime.date(2017, 12, 30)),
+            datetime.date(2018, 1, 2)
+        )
+        self.assertEqual(
+            bank_holidays.get_next_work_day(division=BankHolidays.SCOTLAND, date=datetime.date(2017, 12, 30)),
+            datetime.date(2018, 1, 3)
+        )
+
+    def test_is_work_day(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        self.assertTrue(bank_holidays.is_work_day(datetime.date(2017, 12, 19)))
+        self.assertFalse(bank_holidays.is_work_day(datetime.date(2018, 1, 1)))
+        self.assertTrue(bank_holidays.is_work_day(datetime.date(2018, 1, 2)))
+        self.assertFalse(bank_holidays.is_work_day(datetime.date(2018, 1, 2), division=BankHolidays.SCOTLAND))
+
+    def test_configuring_weekends(self):
+        bank_holidays = self.get_bank_holidays_using_local_data(weekend={1, 5, 6})
+        self.assertFalse(bank_holidays.is_work_day(datetime.date(2017, 12, 19)))
+
     @mock.patch('govuk_bank_holidays.bank_holidays.logger')
     def test_holidays_use_backup_data(self, mock_logger):
         with responses.RequestsMock() as rsps:
             rsps.add(rsps.GET, BankHolidays.source_url, status=404)
             bank_holidays = BankHolidays()
         mock_logger.warning.assert_called_once_with('Using backup bank holiday data')
+        self.assertTrue(bank_holidays.get_holidays())
+
+    @mock.patch('govuk_bank_holidays.bank_holidays.logger')
+    def test_using_cached_list_of_holidays(self, mock_logger):
+        with responses.RequestsMock():
+            bank_holidays = BankHolidays(use_cached_holidays=True)
+        mock_logger.warning.assert_not_called()
         self.assertTrue(bank_holidays.get_holidays())
 
     def test_localisation(self):
@@ -105,11 +145,21 @@ class BankHolidayTestCase(unittest.TestCase):
 
 
 class CodeStyleTestCase(unittest.TestCase):
-    def test_code_style(self):
+    def test_app_python_code_style(self):
+        current_path = os.getcwd()
+        root_path = os.path.dirname(os.path.dirname(__file__))
+        stdout, stderr = sys.stdout, sys.stderr
         try:
-            subprocess.check_output(['flake8'])
-        except subprocess.CalledProcessError as e:
-            self.fail('Code style checks failed\n%s' % e.output.decode('utf-8'))
+            os.chdir(root_path)
+            output = six.StringIO()
+            sys.stdout, sys.stderr = output, output
+            app = application.Application()
+            app.run()
+            if app.result_count:
+                self.fail('Code style errors:\n%s' % output.getvalue())
+        finally:
+            sys.stdout, sys.stderr = stdout, stderr
+            os.chdir(current_path)
 
 
 if __name__ == '__main__':
