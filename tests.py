@@ -91,6 +91,36 @@ class BankHolidayTestCase(unittest.TestCase):
         self.assertFalse(bank_holidays.is_holiday(datetime.date(2016, 1, 4)))
         self.assertTrue(bank_holidays.is_holiday(datetime.date(2016, 1, 4), division=BankHolidays.SCOTLAND))
 
+    def test_next_work_day(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        self.assertEqual(
+            bank_holidays.get_next_work_day(date=datetime.date(2017, 12, 19)),
+            datetime.date(2017, 12, 20)
+        )
+        self.assertEqual(
+            bank_holidays.get_next_work_day(date=datetime.date(2017, 12, 22)),
+            datetime.date(2017, 12, 27)
+        )
+        self.assertEqual(
+            bank_holidays.get_next_work_day(date=datetime.date(2017, 12, 30)),
+            datetime.date(2018, 1, 2)
+        )
+        self.assertEqual(
+            bank_holidays.get_next_work_day(division=BankHolidays.SCOTLAND, date=datetime.date(2017, 12, 30)),
+            datetime.date(2018, 1, 3)
+        )
+
+    def test_is_work_day(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        self.assertTrue(bank_holidays.is_work_day(datetime.date(2017, 12, 19)))
+        self.assertFalse(bank_holidays.is_work_day(datetime.date(2018, 1, 1)))
+        self.assertTrue(bank_holidays.is_work_day(datetime.date(2018, 1, 2)))
+        self.assertFalse(bank_holidays.is_work_day(datetime.date(2018, 1, 2), division=BankHolidays.SCOTLAND))
+
+    def test_configuring_weekends(self):
+        bank_holidays = self.get_bank_holidays_using_local_data(weekend={1, 5, 6})
+        self.assertFalse(bank_holidays.is_work_day(datetime.date(2017, 12, 19)))
+
     @mock.patch('govuk_bank_holidays.bank_holidays.logger')
     def test_holidays_use_backup_data(self, mock_logger):
         with responses.RequestsMock() as rsps:
