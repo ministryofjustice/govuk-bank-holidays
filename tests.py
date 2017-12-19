@@ -129,6 +129,13 @@ class BankHolidayTestCase(unittest.TestCase):
         mock_logger.warning.assert_called_once_with('Using backup bank holiday data')
         self.assertTrue(bank_holidays.get_holidays())
 
+    @mock.patch('govuk_bank_holidays.bank_holidays.logger')
+    def test_using_cached_list_of_holidays(self, mock_logger):
+        with responses.RequestsMock():
+            bank_holidays = BankHolidays(use_cached_holidays=True)
+        mock_logger.warning.assert_not_called()
+        self.assertTrue(bank_holidays.get_holidays())
+
     def test_localisation(self):
         bank_holidays = self.get_bank_holidays_using_local_data(locale='cy')
         holidays = bank_holidays.get_holidays(division=BankHolidays.ENGLAND_AND_WALES)
