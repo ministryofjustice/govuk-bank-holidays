@@ -34,7 +34,7 @@ run ``python setup.py compilemessages sdist bdist_wheel upload``.
 Copyright
 ---------
 
-Copyright © 2017 HM Government (Ministry of Justice Digital Services).
+Copyright (C) 2018 HM Government (Ministry of Justice Digital Services).
 See LICENSE.txt for further details.
 
 .. _GitHub: https://github.com/ministryofjustice/govuk-bank-holidays
