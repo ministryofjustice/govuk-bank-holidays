@@ -12,7 +12,7 @@ with open(os.path.join(root_path, 'README.rst')) as readme:
     README = readme.read()
 
 install_requires = ['requests', 'six']
-tests_require = ['flake8>=3.5,<4', 'responses']
+tests_require = ['flake8', 'responses']
 if sys.version_info[0:2] < (3, 4):
     tests_require.append('mock')
 
