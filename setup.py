@@ -6,16 +6,17 @@ import sys
 
 from setuptools import setup
 
-package_info = importlib.import_module('govuk_bank_holidays')
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
+root_path = os.path.abspath(os.path.dirname(__file__))
+
+with open(os.path.join(root_path, 'README.rst')) as readme:
     README = readme.read()
 
 install_requires = ['requests', 'six']
 tests_require = ['flake8>=3.5,<4', 'responses']
-
 if sys.version_info[0:2] < (3, 4):
     tests_require.append('mock')
 
+package_info = importlib.import_module('govuk_bank_holidays')
 setup_extensions = importlib.import_module('govuk_bank_holidays.setup_extensions')
 
 setup(
@@ -28,6 +29,7 @@ setup(
     license='MIT',
     description='Tool to load UK bank holidays from GOV.UK',
     long_description=README,
+    keywords='bank holidays govuk',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
