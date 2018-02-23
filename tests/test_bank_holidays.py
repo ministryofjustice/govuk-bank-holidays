@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import datetime
+import os
 import unittest
 try:
     from unittest import mock
@@ -132,6 +133,7 @@ class BankHolidayTestCase(unittest.TestCase):
         mock_logger.warning.assert_not_called()
         self.assertTrue(bank_holidays.get_holidays())
 
+    @unittest.skipIf('TRAVIS' in os.environ, 'Python on Travis CI does not work correctly with gettext')
     def test_localisation(self):
         bank_holidays = self.get_bank_holidays_using_local_data(locale='cy')
         holidays = bank_holidays.get_holidays(division=BankHolidays.ENGLAND_AND_WALES)

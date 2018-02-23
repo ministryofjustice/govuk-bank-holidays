@@ -21,6 +21,9 @@ Install using ``pip install govuk-bank-holidays``. Sample usage:
 Development
 -----------
 
+.. image:: https://travis-ci.org/ministryofjustice/govuk-bank-holidays.svg?branch=master
+    :target: https://travis-ci.org/ministryofjustice/govuk-bank-holidays
+
 Please report bugs and open pull requests on `GitHub`_.
 
 Update translation files using ``python setup.py makemessages``, e.g. when updating the i18n module or when adding new languages.
