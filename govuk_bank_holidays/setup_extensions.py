@@ -11,7 +11,7 @@ class MessagesCommand(setuptools.Command):
     user_options = []
 
     def __init__(self, *args, **kwargs):
-        super(MessagesCommand, self).__init__(*args, **kwargs)
+        setuptools.Command.__init__(self, *args, **kwargs)
         self.domain = 'messages'
         self.cwd = os.getcwd()
         self.root_path = os.path.join(os.path.dirname(__file__), os.pardir)

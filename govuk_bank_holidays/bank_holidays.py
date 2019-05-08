@@ -30,14 +30,14 @@ class BankHolidays(object):
         with open(os.path.join(os.path.dirname(__file__), 'bank-holidays.json')) as f:
             return json.load(f)
 
-    def __init__(self, locale=None, weekend={5, 6}, use_cached_holidays=False):
+    def __init__(self, locale=None, weekend=(5, 6), use_cached_holidays=False):
         """
         Load UK bank holidays
         :param locale: the locale into which holidays should be translated; defaults to no translation
         :param weekend: days of the week that are never work days; defaults to Saturday and Sunday
         :param use_cached_holidays: use the cached local copy of the holiday list
         """
-        self.weekend = weekend
+        self.weekend = set(weekend)
         if use_cached_holidays:
             data = self.load_backup_data()
         else:
@@ -87,6 +87,7 @@ class BankHolidays(object):
     def get_holidays(self, division=None, year=None):
         """
         Gets a list of all known bank holidays, optionally filtered by division and/or year
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
         :param division: see division constants; defaults to common holidays
         :param year: defaults to all available years
         :return: list of dicts with titles, dates, etc
@@ -108,6 +109,7 @@ class BankHolidays(object):
     def get_next_holiday(self, division=None, date=None):
         """
         Returns the next known bank holiday
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
         :param division: see division constants; defaults to common holidays
         :param date: search starting from this date; defaults to today
         :return: dict
@@ -120,6 +122,7 @@ class BankHolidays(object):
     def is_holiday(self, date, division=None):
         """
         True if the date is a known bank holiday
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
         :param date: the date to check
         :param division: see division constants; defaults to common holidays
         :return: bool
@@ -129,6 +132,7 @@ class BankHolidays(object):
     def get_next_work_day(self, division=None, date=None):
         """
         Returns the next work day, skipping weekends and bank holidays
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
         :param division: see division constants; defaults to common holidays
         :param date: search starting from this date; defaults to today
         :return: datetime.date; NB: get_next_holiday returns a dict
@@ -144,6 +148,7 @@ class BankHolidays(object):
     def is_work_day(self, date, division=None):
         """
         True if the date is not a weekend or a known bank holiday
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
         :param date: the date to check
         :param division: see division constants; defaults to common holidays
         :return: bool
