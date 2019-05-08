@@ -391,6 +391,54 @@
         "date": "2019-12-26",
         "notes": "",
         "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2020-01-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2020-04-10",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Easter Monday",
+        "date": "2020-04-13",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2020-05-04",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2020-05-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2020-08-31",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2020-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2020-12-28",
+        "notes": "Substitute day",
+        "bunting": true
       }
     ]
   },
@@ -833,6 +881,60 @@
         "title": "Boxing Day",
         "date": "2019-12-26",
         "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2020-01-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "2nd January",
+        "date": "2020-01-02",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2020-04-10",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2020-05-04",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2020-05-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2020-08-03",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "St Andrew’s Day",
+        "date": "2020-11-30",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2020-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2020-12-28",
+        "notes": "Substitute day",
         "bunting": true
       }
     ]
@@ -1324,6 +1426,66 @@
         "title": "Boxing Day",
         "date": "2019-12-26",
         "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2020-01-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "St Patrick’s Day",
+        "date": "2020-03-17",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2020-04-10",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Easter Monday",
+        "date": "2020-04-13",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2020-05-04",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2020-05-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Battle of the Boyne (Orangemen’s Day)",
+        "date": "2020-07-13",
+        "notes": "Substitute day",
+        "bunting": false
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2020-08-31",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2020-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2020-12-28",
+        "notes": "Substitute day",
         "bunting": true
       }
     ]
