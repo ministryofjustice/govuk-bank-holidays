@@ -30,14 +30,14 @@ class BankHolidays(object):
         with open(os.path.join(os.path.dirname(__file__), 'bank-holidays.json')) as f:
             return json.load(f)
 
-    def __init__(self, locale=None, weekend={5, 6}, use_cached_holidays=False):
+    def __init__(self, locale=None, weekend=(5, 6), use_cached_holidays=False):
         """
         Load UK bank holidays
         :param locale: the locale into which holidays should be translated; defaults to no translation
         :param weekend: days of the week that are never work days; defaults to Saturday and Sunday
         :param use_cached_holidays: use the cached local copy of the holiday list
         """
-        self.weekend = weekend
+        self.weekend = set(weekend)
         if use_cached_holidays:
             data = self.load_backup_data()
         else:
