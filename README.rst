@@ -18,6 +18,16 @@ Install using ``pip install govuk-bank-holidays``. Sample usage:
     # choose a different locale for holiday titles and notes
     bank_holidays = BankHolidays(locale='cy')
 
+Bank holidays differ around the UK. The GOV.UK source currently lists these for 3 "divisions":
+
+- England and Wales
+- Scotland
+- Northern Ireland
+
+… and many methods in this library take a ``division`` parameter (c.f. constants on ``BankHolidays`` class).
+
+NB: If no division is specified, only holidays common to *all* divisions are returned.
+
 Development
 -----------
 
