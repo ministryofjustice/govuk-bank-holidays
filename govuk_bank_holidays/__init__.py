@@ -1,3 +1,3 @@
-VERSION = (0, 4)
+VERSION = (0, 5)
 __version__ = '.'.join(map(str, VERSION))
-__author__ = 'Ministry of Justice Digital Services'
+__author__ = 'Ministry of Justice Digital & Technology'
