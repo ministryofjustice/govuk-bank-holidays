@@ -51,7 +51,7 @@ run ``python setup.py compilemessages sdist bdist_wheel upload``.
 Copyright
 ---------
 
-Copyright (C) 2019 HM Government (Ministry of Justice Digital Services).
+Copyright (C) 2020 HM Government (Ministry of Justice Digital & Technology).
 See LICENSE.txt for further details.
 
 .. _GOV.UK: https://www.gov.uk/bank-holidays
