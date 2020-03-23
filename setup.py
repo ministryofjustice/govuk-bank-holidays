@@ -14,7 +14,7 @@ with open(os.path.join(root_path, 'README.rst')) as readme:
 install_requires = ['requests', 'six']
 tests_require = ['flake8', 'responses']
 if sys.version_info[0:2] < (3, 4):
-    tests_require.append('mock')
+    tests_require.append('mock<4')
 
 package_info = importlib.import_module('govuk_bank_holidays')
 setup_extensions = importlib.import_module('govuk_bank_holidays.setup_extensions')
@@ -44,6 +44,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     cmdclass=setup_extensions.command_classes,
     install_requires=install_requires,
