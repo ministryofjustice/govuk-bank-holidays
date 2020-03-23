@@ -1,6 +1,9 @@
 GOV.UK Bank Holidays
 ====================
 
+This library loads the official list of bank holidays in the United Kingdom as supplied by `GOV.UK`_.
+GOV.UK tend to provide this list for only a year or two into the future.
+
 Usage
 -----
 
@@ -50,4 +53,5 @@ Copyright
 Copyright (C) 2019 HM Government (Ministry of Justice Digital Services).
 See LICENSE.txt for further details.
 
+.. _GOV.UK: https://www.gov.uk/bank-holidays
 .. _GitHub: https://github.com/ministryofjustice/govuk-bank-holidays
