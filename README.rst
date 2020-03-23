@@ -17,6 +17,7 @@ Install using ``pip install govuk-bank-holidays``. Sample usage:
     for bank_holiday in bank_holidays.get_holidays():
         print(bank_holiday['title'], '>', bank_holiday['date'])
     print(bank_holidays.get_next_holiday())
+    # see BankHolidays source file for more methods and arguments…
 
     # choose a different locale for holiday titles and notes
     bank_holidays = BankHolidays(locale='cy')
