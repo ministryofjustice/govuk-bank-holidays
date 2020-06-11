@@ -42,6 +42,7 @@ class BankHolidays(object):
             data = self.load_backup_data()
         else:
             try:
+                logger.debug('Downloading bank holidays from %s' % self.source_url)
                 data = requests.get(self.source_url).json()
             except (requests.RequestException, ValueError):
                 logger.warning('Using backup bank holiday data')
