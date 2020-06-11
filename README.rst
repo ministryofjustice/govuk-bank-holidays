@@ -42,15 +42,58 @@ Development
 .. image:: https://travis-ci.org/ministryofjustice/govuk-bank-holidays.svg?branch=master
     :target: https://travis-ci.org/ministryofjustice/govuk-bank-holidays
 
+.. image:: https://github.com/ministryofjustice/govuk-bank-holidays/workflows/Run%20tests/badge.svg?branch=master
+    :target: https://github.com/ministryofjustice/govuk-bank-holidays/actions
+
 Please report bugs and open pull requests on `GitHub`_.
 
 Update translation files using ``python setup.py makemessages``, e.g. when updating the i18n module or when adding new languages.
 Compile them using ``python setup.py compilemessages``; this is *required* before testing and distribution.
 
-Use ``python setup.py compilemessages test`` to run all tests.
+Use ``python setup.py compilemessages test`` to run all tests locally.
 
-Distribute a new version by updating the ``VERSION`` tuple in ``govuk_bank_holidays`` and
-run ``python setup.py compilemessages sdist bdist_wheel upload``.
+Distribute a new version by:
+
+- updating the ``VERSION`` tuple in ``govuk_bank_holidays``
+- adding a note to the `History`_
+- creating a release on GitHub which triggers an upload to PYPI
+
+Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` locally.
+
+History
+-------
+
+0.8
+    The library does not differ from 0.7.
+    This release is the first to use GitHub Actions to automatically publish to PYPI.
+
+0.7
+    Minor documentation update.
+
+0.6
+    Updated cached bank holidays file to include latest holidays published by GOV.UK.
+    Added python 3.8 to testing matrix.
+    Minor documentation update.
+
+0.5
+    Updated cached bank holidays file to include latest holidays published by GOV.UK.
+
+0.4
+    Updated cached bank holidays file to include latest holidays published by GOV.UK.
+    Added python 3.7 to testing matrix.
+    Documentation improved.
+
+0.3
+    Improved testing.
+    Library unchanged.
+
+0.2
+    Updated cached bank holidays file to include latest holidays published by GOV.UK.
+    Added option to force use of cached file.
+    Added next work day calculation.
+
+0.1
+    Initial release.
 
 Copyright
 ---------
