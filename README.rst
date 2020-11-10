@@ -39,9 +39,6 @@ please note that the Welsh version may contain errors.
 Development
 -----------
 
-.. image:: https://travis-ci.org/ministryofjustice/govuk-bank-holidays.svg?branch=master
-    :target: https://travis-ci.org/ministryofjustice/govuk-bank-holidays
-
 .. image:: https://github.com/ministryofjustice/govuk-bank-holidays/workflows/Run%20tests/badge.svg?branch=master
     :target: https://github.com/ministryofjustice/govuk-bank-holidays/actions
 
@@ -56,7 +53,7 @@ Distribute a new version by:
 
 - updating the ``VERSION`` tuple in ``govuk_bank_holidays``
 - adding a note to the `History`_
-- creating a release on GitHub which triggers an upload to PYPI
+- publishing a release on GitHub which triggers an upload to PYPI
 
 Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` locally.
 
