@@ -11,6 +11,10 @@ __pycache__/
 build/
 dist/
 
+# testing
+.coverage
+.tox/
+
 # environments
 env/
 venv/
