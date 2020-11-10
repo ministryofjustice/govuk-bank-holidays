@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import datetime
+import functools
 import gettext
 import json
 import logging
 import os
 
 import requests
-import six
 
 __all__ = ('BankHolidays',)
 logger = logging.getLogger(__name__)
@@ -75,7 +73,7 @@ class BankHolidays(object):
         self.data = {
             division: sorted(filter(None, map(map_holiday, item.get('events', []))),
                              key=lambda e: e['date'])
-            for division, item in six.iteritems(data)
+            for division, item in data.items()
         }
 
     def __iter__(self):
@@ -97,10 +95,12 @@ class BankHolidays(object):
             holidays = self.data[division]
         else:
             holidays = self.data[self.ENGLAND_AND_WALES]
-            dates_in_common = six.moves.reduce(
+            dates_in_common = functools.reduce(
                 set.intersection,
-                (set(map(lambda holiday: holiday['date'], division_holidays))
-                 for division, division_holidays in six.iteritems(self.data))
+                (
+                    set(map(lambda holiday: holiday['date'], division_holidays))
+                    for division, division_holidays in self.data.items()
+                )
             )
             holidays = filter(lambda holiday: holiday['date'] in dates_in_common, holidays)
         if year:

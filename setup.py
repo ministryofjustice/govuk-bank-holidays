@@ -1,21 +1,21 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import importlib
 import os
 import sys
+import warnings
 
 from setuptools import setup
+
+if sys.version_info[0:2] < (3, 6):
+    warnings.warn('This package will only run on Python version 3.6+')
 
 root_path = os.path.abspath(os.path.dirname(__file__))
 
 with open(os.path.join(root_path, 'README.rst')) as readme:
     README = readme.read()
 
-install_requires = ['requests', 'six']
+install_requires = ['requests']
 tests_require = ['flake8', 'responses']
-if sys.version_info[0:2] < (3, 4):
-    tests_require.append('mock<4')
 
 package_info = importlib.import_module('govuk_bank_holidays')
 setup_extensions = importlib.import_module('govuk_bank_holidays.setup_extensions')
@@ -38,11 +38,7 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
