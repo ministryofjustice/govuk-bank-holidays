@@ -15,7 +15,7 @@ class BankHolidayTestCase(unittest.TestCase):
             rsps.add(rsps.GET, BankHolidays.source_url, json=BankHolidays.load_backup_data())
             return BankHolidays(**kwargs)
 
-    def assertExpectedFormat(self, holidays):
+    def assertExpectedFormat(self, holidays):  # noqa: N802
         last_holiday = None
         expected_keys = ['bunting', 'date', 'notes', 'title']
         for holiday in holidays:
