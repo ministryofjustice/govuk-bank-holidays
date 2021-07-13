@@ -60,6 +60,11 @@ Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` 
 History
 -------
 
+0.9
+    Added methods to find previous bank holidays / work days, mirroring the existing methods.
+    Removed support for python versions older than 3.6.
+    Added python 3.9 to testing matrix.
+
 0.8
     The library does not differ from 0.7.
     This release is the first to use GitHub Actions to automatically publish to PYPI.
@@ -95,7 +100,7 @@ History
 Copyright
 ---------
 
-Copyright (C) 2020 HM Government (Ministry of Justice Digital & Technology).
+Copyright (C) 2021 HM Government (Ministry of Justice Digital & Technology).
 See LICENSE.txt for further details.
 
 .. _GOV.UK: https://www.gov.uk/bank-holidays
