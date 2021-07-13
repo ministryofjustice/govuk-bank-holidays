@@ -30,16 +30,16 @@ class BankHolidayTestCase(unittest.TestCase):
     def test_holidays(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
         holidays = bank_holidays.get_holidays()
-        self.assertEqual(len(holidays), 61)
+        self.assertEqual(len(holidays), 68)
         self.assertExpectedFormat(holidays)
 
     def test_holidays_for_division(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
         holidays = bank_holidays.get_holidays(division=BankHolidays.ENGLAND_AND_WALES)
-        self.assertEqual(len(holidays), 81)
+        self.assertEqual(len(holidays), 90)
         self.assertExpectedFormat(holidays)
         holidays = bank_holidays.get_holidays(division=BankHolidays.SCOTLAND)
-        self.assertEqual(len(holidays), 91)
+        self.assertEqual(len(holidays), 101)
         self.assertExpectedFormat(holidays)
         self.assertIn(u'St Andrew\u2019s Day', map(lambda holiday: holiday['title'], holidays))
 
