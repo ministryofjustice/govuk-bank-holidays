@@ -76,6 +76,18 @@ class BankHolidayTestCase(unittest.TestCase):
             datetime.date(2016, 1, 4)
         )
 
+    def test_prev_bank_holiday(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        fifth_january = datetime.date(2016, 1, 5)
+        self.assertEqual(
+            bank_holidays.get_prev_holiday(date=fifth_january)['date'],
+            datetime.date(2016, 1, 1)
+        )
+        self.assertEqual(
+            bank_holidays.get_prev_holiday(division=BankHolidays.SCOTLAND, date=fifth_january)['date'],
+            datetime.date(2016, 1, 4)
+        )
+
     def test_is_holiday_check(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
         self.assertTrue(bank_holidays.is_holiday(datetime.date(2012, 1, 2)))
@@ -99,6 +111,29 @@ class BankHolidayTestCase(unittest.TestCase):
         self.assertEqual(
             bank_holidays.get_next_work_day(division=BankHolidays.SCOTLAND, date=datetime.date(2017, 12, 30)),
             datetime.date(2018, 1, 3)
+        )
+
+    def test_prev_work_day(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        self.assertEqual(
+            bank_holidays.get_prev_work_day(date=datetime.date(2017, 12, 19)),
+            datetime.date(2017, 12, 18)
+        )
+        self.assertEqual(
+            bank_holidays.get_prev_work_day(date=datetime.date(2017, 12, 18)),
+            datetime.date(2017, 12, 15)
+        )
+        self.assertEqual(
+            bank_holidays.get_prev_work_day(date=datetime.date(2017, 12, 27)),
+            datetime.date(2017, 12, 22)
+        )
+        self.assertEqual(
+            bank_holidays.get_prev_work_day(date=datetime.date(2018, 1, 3)),
+            datetime.date(2018, 1, 2)
+        )
+        self.assertEqual(
+            bank_holidays.get_prev_work_day(division=BankHolidays.SCOTLAND, date=datetime.date(2018, 1, 3)),
+            datetime.date(2017, 12, 29)
         )
 
     def test_is_work_day(self):

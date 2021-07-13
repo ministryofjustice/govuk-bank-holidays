@@ -135,11 +135,24 @@ class BankHolidays(object):
         NB: If no division is specified, only holidays common to *all* divisions are returned.
         :param division: see division constants; defaults to common holidays
         :param date: search starting from this date; defaults to today
-        :return: dict
+        :return: dict or None
         """
         date = date or datetime.date.today()
         for holiday in self.get_holidays(division=division):
             if holiday['date'] > date:
+                return holiday
+
+    def get_prev_holiday(self, division=None, date=None):
+        """
+        Returns the previous known bank holiday
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
+        :param division: see division constants; defaults to common holidays
+        :param date: search starting from this date; defaults to today
+        :return: dict or None
+        """
+        date = date or datetime.date.today()
+        for holiday in reversed(self.get_holidays(division=division)):
+            if holiday['date'] < date:
                 return holiday
 
     def get_next_work_day(self, division=None, date=None):
@@ -155,5 +168,21 @@ class BankHolidays(object):
         holidays = set(holiday['date'] for holiday in self.get_holidays(division=division))
         while True:
             date += one_day
+            if date.weekday() not in self.weekend and date not in holidays:
+                return date
+
+    def get_prev_work_day(self, division=None, date=None):
+        """
+        Returns the previous work day, skipping weekends and bank holidays
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
+        :param division: see division constants; defaults to common holidays
+        :param date: search starting from this date; defaults to today
+        :return: datetime.date; NB: get_next_holiday returns a dict
+        """
+        date = date or datetime.date.today()
+        one_day = datetime.timedelta(days=1)
+        holidays = set(holiday['date'] for holiday in self.get_holidays(division=division))
+        while True:
+            date -= one_day
             if date.weekday() not in self.weekend and date not in holidays:
                 return date
