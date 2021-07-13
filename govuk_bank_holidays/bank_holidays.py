@@ -13,8 +13,11 @@ logger = logging.getLogger(__name__)
 
 class BankHolidays(object):
     """
-    Tool to load UK bank holidays from GOV.UK
-    C.f. https://www.gov.uk/bank-holidays
+    Tool to load UK bank holidays from GOV.UK (see https://www.gov.uk/bank-holidays)
+
+    NB: Bank holidays vary between parts of the UK so GOV.UK provide separate lists for different "divisions".
+    Methods of this class will default to only considering bank holidays common to *all* divisions
+    unless a specific division is provided.
     """
     source_url = 'https://www.gov.uk/bank-holidays.json'
 
@@ -78,7 +81,7 @@ class BankHolidays(object):
 
     def __iter__(self):
         """
-        Iterates over the current year's holidays that are common to all divisions
+        Iterates over the current year's holidays that are common to *all* divisions
         :return: list of dicts with titles, dates, etc
         """
         return iter(self.get_holidays(year=datetime.date.today().year))
