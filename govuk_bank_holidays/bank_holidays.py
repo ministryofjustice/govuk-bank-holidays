@@ -107,6 +107,28 @@ class BankHolidays(object):
             holidays = filter(lambda holiday: holiday['date'].year == year, holidays)
         return list(holidays)
 
+    def is_holiday(self, date, division=None):
+        """
+        True if the date is a known bank holiday
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
+        :param date: the date to check
+        :param division: see division constants; defaults to common holidays
+        :return: bool
+        """
+        return date in (holiday['date'] for holiday in self.get_holidays(division=division))
+
+    def is_work_day(self, date, division=None):
+        """
+        True if the date is not a weekend or a known bank holiday
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
+        :param date: the date to check
+        :param division: see division constants; defaults to common holidays
+        :return: bool
+        """
+        return date.weekday() not in self.weekend and date not in (
+            holiday['date'] for holiday in self.get_holidays(division=division)
+        )
+
     def get_next_holiday(self, division=None, date=None):
         """
         Returns the next known bank holiday
@@ -119,16 +141,6 @@ class BankHolidays(object):
         for holiday in self.get_holidays(division=division):
             if holiday['date'] > date:
                 return holiday
-
-    def is_holiday(self, date, division=None):
-        """
-        True if the date is a known bank holiday
-        NB: If no division is specified, only holidays common to *all* divisions are returned.
-        :param date: the date to check
-        :param division: see division constants; defaults to common holidays
-        :return: bool
-        """
-        return date in (holiday['date'] for holiday in self.get_holidays(division=division))
 
     def get_next_work_day(self, division=None, date=None):
         """
@@ -145,15 +157,3 @@ class BankHolidays(object):
             date += one_day
             if date.weekday() not in self.weekend and date not in holidays:
                 return date
-
-    def is_work_day(self, date, division=None):
-        """
-        True if the date is not a weekend or a known bank holiday
-        NB: If no division is specified, only holidays common to *all* divisions are returned.
-        :param date: the date to check
-        :param division: see division constants; defaults to common holidays
-        :return: bool
-        """
-        return date.weekday() not in self.weekend and date not in (
-            holiday['date'] for holiday in self.get_holidays(division=division)
-        )
