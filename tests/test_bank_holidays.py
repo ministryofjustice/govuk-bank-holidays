@@ -7,6 +7,12 @@ import responses
 
 from govuk_bank_holidays.bank_holidays import BankHolidays
 
+# numbers of known bank holidays cached in backup data
+BACKUP_DATA_COMMON_HOLIDAY_COUNT = 68
+BACKUP_DATA_ENGLAND_AND_WALES_HOLIDAY_COUNT = 90
+BACKUP_DATA_SCOTLAND_HOLIDAY_COUNT = 101
+BACKUP_DATA_NORTHERN_IRELAND_HOLIDAY_COUNT = 112
+
 
 class BankHolidayTestCase(unittest.TestCase):
     @classmethod
@@ -29,16 +35,16 @@ class BankHolidayTestCase(unittest.TestCase):
     def test_holidays(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
         holidays = bank_holidays.get_holidays()
-        self.assertEqual(len(holidays), 68)
+        self.assertEqual(len(holidays), BACKUP_DATA_COMMON_HOLIDAY_COUNT)
         self.assertExpectedFormat(holidays)
 
     def test_holidays_for_division(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
         holidays = bank_holidays.get_holidays(division=BankHolidays.ENGLAND_AND_WALES)
-        self.assertEqual(len(holidays), 90)
+        self.assertEqual(len(holidays), BACKUP_DATA_ENGLAND_AND_WALES_HOLIDAY_COUNT)
         self.assertExpectedFormat(holidays)
         holidays = bank_holidays.get_holidays(division=BankHolidays.SCOTLAND)
-        self.assertEqual(len(holidays), 101)
+        self.assertEqual(len(holidays), BACKUP_DATA_SCOTLAND_HOLIDAY_COUNT)
         self.assertExpectedFormat(holidays)
         self.assertIn('St Andrew’s Day', map(lambda holiday: holiday['title'], holidays))
 
