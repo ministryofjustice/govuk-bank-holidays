@@ -4,6 +4,9 @@ GOV.UK Bank Holidays
 This library loads the official list of bank holidays in the United Kingdom as supplied by `GOV.UK`_.
 GOV.UK tend to provide this list for only a year or two into the future.
 
+A cached backup list of known bank holidays is stored in this package though it is not updated often.
+GOV.UK no longer provide bank holidays for some of the older years still part of this backup list.
+
 Usage
 -----
 
@@ -15,12 +18,16 @@ Install using ``pip install govuk-bank-holidays``. Sample usage:
 
     bank_holidays = BankHolidays()
     for bank_holiday in bank_holidays.get_holidays():
-        print(bank_holiday['title'], '>', bank_holiday['date'])
+        print(bank_holiday['title'], 'is on', bank_holiday['date'])
     print(bank_holidays.get_next_holiday())
-    # see govuk_bank_holidays/bank_holidays.py source file for more methods and arguments…
+
+    # see govuk_bank_holidays/bank_holidays.py source file for more methods and argument details…
 
     # choose a different locale for holiday titles and notes
     bank_holidays = BankHolidays(locale='cy')
+
+    # use cached holidays if internet connection is not desired
+    bank_holidays = BankHolidays(use_cached_holidays=True)
 
 Bank holidays differ around the UK. The GOV.UK source currently lists these for 3 "divisions":
 
