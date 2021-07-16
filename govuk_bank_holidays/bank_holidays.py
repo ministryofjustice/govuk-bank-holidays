@@ -11,7 +11,7 @@ __all__ = ('BankHolidays',)
 logger = logging.getLogger(__name__)
 
 
-class BankHolidays(object):
+class BankHolidays:
     """
     Tool to load UK bank holidays from GOV.UK (see https://www.gov.uk/bank-holidays)
 

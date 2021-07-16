@@ -41,7 +41,7 @@ class BankHolidayTestCase(unittest.TestCase):
         holidays = bank_holidays.get_holidays(division=BankHolidays.SCOTLAND)
         self.assertEqual(len(holidays), 101)
         self.assertExpectedFormat(holidays)
-        self.assertIn(u'St Andrew\u2019s Day', map(lambda holiday: holiday['title'], holidays))
+        self.assertIn('St Andrew’s Day', map(lambda holiday: holiday['title'], holidays))
 
     def test_holidays_for_year(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
@@ -55,7 +55,7 @@ class BankHolidayTestCase(unittest.TestCase):
         holidays = bank_holidays.get_holidays(division=BankHolidays.NORTHERN_IRELAND, year=2016)
         self.assertEqual(len(holidays), 10)
         self.assertExpectedFormat(holidays)
-        self.assertIn(u'Battle of the Boyne (Orangemen’s Day)', map(lambda holiday: holiday['title'], holidays))
+        self.assertIn('Battle of the Boyne (Orangemen’s Day)', map(lambda holiday: holiday['title'], holidays))
         self.assertTrue(all(holiday['date'].year == 2016 for holiday in holidays))
 
     def test_holiday_iterator(self):
