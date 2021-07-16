@@ -18,7 +18,7 @@ Install using ``pip install govuk-bank-holidays``. Sample usage:
 
     bank_holidays = BankHolidays()
     for bank_holiday in bank_holidays.get_holidays():
-        print(bank_holiday['title'], 'is on', bank_holiday['date'])
+        print(bank_holiday.title, 'is on', bank_holiday.date)
     print(bank_holidays.get_next_holiday())
 
     # see govuk_bank_holidays/bank_holidays.py source file for more methods and argument details…
@@ -35,7 +35,7 @@ Bank holidays differ around the UK. The GOV.UK source currently lists these for 
 - Scotland
 - Northern Ireland
 
-… and many methods in this library take a ``division`` parameter (see constants defined on ``BankHolidays`` class).
+… and many methods in this library take a ``division`` parameter (see constants defined in ``Division`` enum).
 
 NB: If no division is specified, only holidays common to *all* divisions are returned so some local bank holidays
 may not be listed. Therefore specifying a division is recommended.
@@ -67,6 +67,13 @@ Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` 
 
 History
 -------
+
+0.10 WIP
+    Added stronger typing throughout, though the api remains largely the same:
+    bank holidays now have their own type ``BankHoliday`` (though dictionary-based access is retained; i.e. ``bank_holiday.title`` and ``bank_holiday['title']`` are equivalent),
+    UK "divisions" are now defined by a new enum class ``Division``,
+    all methods have typing hints.
+    Made ``data`` attribute of ``BankHolidays`` class has been made private.
 
 0.9
     Added methods to find previous bank holidays / work days, mirroring the existing methods.

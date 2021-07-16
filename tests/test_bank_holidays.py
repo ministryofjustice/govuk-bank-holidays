@@ -5,7 +5,7 @@ from unittest import mock
 
 import responses
 
-from govuk_bank_holidays.bank_holidays import BankHolidays
+from govuk_bank_holidays.bank_holidays import BankHolidays, Division
 
 # numbers of known bank holidays cached in backup data
 BACKUP_DATA_COMMON_HOLIDAY_COUNT = 68
@@ -25,8 +25,11 @@ class BankHolidayTestCase(unittest.TestCase):
         last_holiday = None
         expected_keys = ['bunting', 'date', 'notes', 'title']
         for holiday in holidays:
-            self.assertListEqual(sorted(holiday.keys()), expected_keys,
-                                 msg='Unexpected or missing dictionary keys')
+            for expected_key in expected_keys:
+                self.assertIsNotNone(holiday[expected_key],
+                                     msg='Holiday is missing expected key (dict access method)')
+                self.assertIsNotNone(getattr(holiday, expected_key, None),
+                                     msg='Holiday is missing expected attribute')
             if last_holiday:
                 self.assertGreater(holiday['date'], last_holiday['date'],
                                    msg='Holidays are not correctly sorted')
@@ -173,3 +176,30 @@ class BankHolidayTestCase(unittest.TestCase):
         holiday_names = set(holiday['title'] for holiday in holidays)
         self.assertIn('Dydd Nadolig', holiday_names)
         self.assertNotIn('Christmas Day', holiday_names)
+
+    def test_division_type(self):
+        # Division enum mimics a str for readability and partial backwards compatibility
+        self.assertEqual(Division.NORTHERN_IRELAND, 'northern-ireland')
+
+        # divisions can be provided to BankHolidays methods using str or Division
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        holidays = bank_holidays.get_holidays(division=None)
+        self.assertEqual(len(holidays), BACKUP_DATA_COMMON_HOLIDAY_COUNT)
+        holidays = bank_holidays.get_holidays(division=Division.NORTHERN_IRELAND)
+        self.assertEqual(len(holidays), BACKUP_DATA_NORTHERN_IRELAND_HOLIDAY_COUNT)
+        holidays = bank_holidays.get_holidays(division='northern-ireland')
+        self.assertEqual(len(holidays), BACKUP_DATA_NORTHERN_IRELAND_HOLIDAY_COUNT)
+
+    def test_incorrect_division(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        with self.assertRaises(ValueError):
+            bank_holidays.get_holidays(division='wales')
+
+    def test_correct_but_missing_division(self):
+        backup_data = BankHolidays.load_backup_data()
+        del backup_data[Division.SCOTLAND.value]
+        with responses.RequestsMock() as rsps:
+            rsps.add(rsps.GET, BankHolidays.source_url, json=backup_data)
+            bank_holidays = BankHolidays()
+        with self.assertRaises(KeyError):
+            bank_holidays.get_holidays(division=Division.SCOTLAND)
