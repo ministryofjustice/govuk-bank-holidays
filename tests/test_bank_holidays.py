@@ -19,12 +19,11 @@ class BankHolidayTestCase(unittest.TestCase):
         last_holiday = None
         expected_keys = ['bunting', 'date', 'notes', 'title']
         for holiday in holidays:
-            if not last_holiday:
-                continue
             self.assertListEqual(sorted(holiday.keys()), expected_keys,
                                  msg='Unexpected or missing dictionary keys')
-            self.assertGreater(holiday['date'], last_holiday['date'],
-                               msg='Holidays are not correctly sorted')
+            if last_holiday:
+                self.assertGreater(holiday['date'], last_holiday['date'],
+                                   msg='Holidays are not correctly sorted')
             last_holiday = holiday
 
     def test_holidays(self):
