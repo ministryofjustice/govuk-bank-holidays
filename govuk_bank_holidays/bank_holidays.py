@@ -128,11 +128,7 @@ class BankHolidays:
 
         return list(holidays)
 
-    def holidays(self,
-                 division=None,
-                 start=datetime.date.today(),
-                 end=None,
-                 direction=FUTURE):
+    def holidays(self, division=None, start=None, end=None, direction=FUTURE):
         """
         Returns a generator for holidays
         by division
@@ -141,6 +137,8 @@ class BankHolidays:
         """
         dataset = self.data.get(
             division) if division else self._get_common_holidays()
+
+        start = self._date_or_today(start)
 
         def valid_future_dates(e):
             return e['date'] >= start if end is None else e[
@@ -157,14 +155,11 @@ class BankHolidays:
         for day in source:
             yield day
 
-    def work_days(self,
-                  division=None,
-                  start=datetime.date.today(),
-                  end=None,
-                  direction=FUTURE):
+    def work_days(self, division=None, start=None, end=None, direction=FUTURE):
         """
         Returns a generator for working days
         """
+        start = self._date_or_today(start)
         _holidays = map(
             operator.itemgetter('date'),
             self.holidays(division=division,
