@@ -110,7 +110,8 @@ class BankHolidays:
             holidays = filter(lambda holiday: holiday['date'].year == year, holidays)
         return list(holidays)
 
-    def get_known_holiday_date_set(self, division=None):
+    @functools.lru_cache()
+    def _get_known_holiday_date_set(self, division=None):
         """
         Returns an unordered set of all known bank holiday dates
         NB: If no division is specified, only holidays common to *all* divisions are returned.
@@ -128,7 +129,7 @@ class BankHolidays:
         :param division: see division constants; defaults to common holidays
         :return: bool
         """
-        return date in self.get_known_holiday_date_set(division=division)
+        return date in self._get_known_holiday_date_set(division=division)
 
     def is_work_day(self, date, division=None):
         """
@@ -138,7 +139,7 @@ class BankHolidays:
         :param division: see division constants; defaults to common holidays
         :return: bool
         """
-        return date.weekday() not in self.weekend and date not in self.get_known_holiday_date_set(division=division)
+        return date.weekday() not in self.weekend and date not in self._get_known_holiday_date_set(division=division)
 
     def get_next_holiday(self, division=None, date=None):
         """
@@ -176,10 +177,9 @@ class BankHolidays:
         """
         date = date or datetime.date.today()
         one_day = datetime.timedelta(days=1)
-        holidays = self.get_known_holiday_date_set(division)
         while True:
             date += one_day
-            if date.weekday() not in self.weekend and date not in holidays:
+            if self.is_work_day(date, division=division):
                 return date
 
     def get_prev_work_day(self, division=None, date=None):
@@ -192,10 +192,9 @@ class BankHolidays:
         """
         date = date or datetime.date.today()
         one_day = datetime.timedelta(days=1)
-        holidays = self.get_known_holiday_date_set(division)
         while True:
             date -= one_day
-            if date.weekday() not in self.weekend and date not in holidays:
+            if self.is_work_day(date, division=division):
                 return date
 
     def holidays_after(self, division=None, date=None):
@@ -229,10 +228,9 @@ class BankHolidays:
         """
         date = date or datetime.date.today()
         one_day = datetime.timedelta(days=1)
-        holidays = self.get_known_holiday_date_set(division)
         while True:
             date += one_day
-            if date.weekday() not in self.weekend and date not in holidays:
+            if self.is_work_day(date, division=division):
                 yield date
 
     def work_days_before(self, division=None, date=None):
@@ -244,8 +242,7 @@ class BankHolidays:
         """
         date = date or datetime.date.today()
         one_day = datetime.timedelta(days=1)
-        holidays = self.get_known_holiday_date_set(division)
         while True:
             date -= one_day
-            if date.weekday() not in self.weekend and date not in holidays:
+            if self.is_work_day(date, division=division):
                 yield date
