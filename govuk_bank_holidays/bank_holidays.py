@@ -110,6 +110,16 @@ class BankHolidays:
             holidays = filter(lambda holiday: holiday['date'].year == year, holidays)
         return list(holidays)
 
+    def get_known_holiday_date_set(self, division=None):
+        """
+        Returns an unordered set of all known bank holiday dates
+        NB: If no division is specified, only holidays common to *all* divisions are returned.
+        """
+        return set(
+            holiday['date']
+            for holiday in self.get_holidays(division=division)
+        )
+
     def is_holiday(self, date, division=None):
         """
         True if the date is a known bank holiday
@@ -118,7 +128,7 @@ class BankHolidays:
         :param division: see division constants; defaults to common holidays
         :return: bool
         """
-        return date in (holiday['date'] for holiday in self.get_holidays(division=division))
+        return date in self.get_known_holiday_date_set(division=division)
 
     def is_work_day(self, date, division=None):
         """
@@ -128,9 +138,7 @@ class BankHolidays:
         :param division: see division constants; defaults to common holidays
         :return: bool
         """
-        return date.weekday() not in self.weekend and date not in (
-            holiday['date'] for holiday in self.get_holidays(division=division)
-        )
+        return date.weekday() not in self.weekend and date not in self.get_known_holiday_date_set(division=division)
 
     def get_next_holiday(self, division=None, date=None):
         """
@@ -168,7 +176,7 @@ class BankHolidays:
         """
         date = date or datetime.date.today()
         one_day = datetime.timedelta(days=1)
-        holidays = set(holiday['date'] for holiday in self.get_holidays(division=division))
+        holidays = self.get_known_holiday_date_set(division)
         while True:
             date += one_day
             if date.weekday() not in self.weekend and date not in holidays:
@@ -184,8 +192,60 @@ class BankHolidays:
         """
         date = date or datetime.date.today()
         one_day = datetime.timedelta(days=1)
-        holidays = set(holiday['date'] for holiday in self.get_holidays(division=division))
+        holidays = self.get_known_holiday_date_set(division)
         while True:
             date -= one_day
             if date.weekday() not in self.weekend and date not in holidays:
                 return date
+
+    def holidays_after(self, division=None, date=None):
+        """
+        Yields known bank holidays in chronological order
+        NB: If no division is specified, only holidays common to *all* divisions are yielded.
+        :param division: see division constants; defaults to common holidays
+        :param date: starting after this date; defaults to today
+        """
+        date = date or datetime.date.today()
+        holidays = self.get_holidays(division=division)
+        yield from filter(lambda holiday: holiday['date'] > date, holidays)
+
+    def holidays_before(self, division=None, date=None):
+        """
+        Yields known bank holidays in reverse chronological order
+        NB: If no division is specified, only holidays common to *all* divisions are yielded.
+        :param division: see division constants; defaults to common holidays
+        :param date: starting before this date; defaults to today
+        """
+        date = date or datetime.date.today()
+        holidays = reversed(self.get_holidays(division=division))
+        yield from filter(lambda holiday: holiday['date'] < date, holidays)
+
+    def work_days_after(self, division=None, date=None):
+        """
+        Yields an infinite series of work days in chronological order skipping weekends and known bank holidays
+        NB: If no division is specified, only holidays common to *all* divisions are yielded.
+        :param division: see division constants; defaults to common holidays
+        :param date: starting after this date; defaults to today
+        """
+        date = date or datetime.date.today()
+        one_day = datetime.timedelta(days=1)
+        holidays = self.get_known_holiday_date_set(division)
+        while True:
+            date += one_day
+            if date.weekday() not in self.weekend and date not in holidays:
+                yield date
+
+    def work_days_before(self, division=None, date=None):
+        """
+        Yields an infinite series of work days in reverse chronological order skipping weekends and known bank holidays
+        NB: If no division is specified, only holidays common to *all* divisions are yielded.
+        :param division: see division constants; defaults to common holidays
+        :param date: starting before this date; defaults to today
+        """
+        date = date or datetime.date.today()
+        one_day = datetime.timedelta(days=1)
+        holidays = self.get_known_holiday_date_set(division)
+        while True:
+            date -= one_day
+            if date.weekday() not in self.weekend and date not in holidays:
+                yield date

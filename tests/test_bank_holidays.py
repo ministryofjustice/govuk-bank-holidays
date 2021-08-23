@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import datetime
+import itertools
 import unittest
 from unittest import mock
 
@@ -173,3 +174,61 @@ class BankHolidayTestCase(unittest.TestCase):
         holiday_names = set(holiday['title'] for holiday in holidays)
         self.assertIn('Dydd Nadolig', holiday_names)
         self.assertNotIn('Christmas Day', holiday_names)
+
+    def test_future_holiday_generators(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        generator = bank_holidays.holidays_after(date=datetime.date(2016, 1, 2))
+        self.assertEqual(next(generator)['date'], datetime.date(2016, 3, 25))
+        self.assertEqual(next(generator)['date'], datetime.date(2016, 5, 2))
+        self.assertEqual(next(generator)['date'], datetime.date(2016, 5, 30))
+        more_holidays = list(itertools.islice(generator, 3))
+        self.assertEqual(len(more_holidays), 3)
+        self.assertExpectedFormat(more_holidays)
+        generator = bank_holidays.holidays_after(division=BankHolidays.SCOTLAND, date=datetime.date(2016, 1, 2))
+        self.assertEqual(next(generator)['date'], datetime.date(2016, 1, 4))
+
+    def test_past_holiday_generators(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        generator = bank_holidays.holidays_before(date=datetime.date(2016, 1, 5))
+        self.assertEqual(next(generator)['date'], datetime.date(2016, 1, 1))
+        self.assertEqual(next(generator)['date'], datetime.date(2015, 12, 28))
+        self.assertEqual(next(generator)['date'], datetime.date(2015, 12, 25))
+        more_holidays = list(itertools.islice(generator, 3))
+        self.assertEqual(len(more_holidays), 3)
+        self.assertExpectedFormat(list(reversed(more_holidays)))
+        generator = bank_holidays.holidays_before(division=BankHolidays.SCOTLAND, date=datetime.date(2016, 1, 5))
+        self.assertEqual(next(generator)['date'], datetime.date(2016, 1, 4))
+
+    def test_future_work_day_generators(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        generator = bank_holidays.work_days_after(date=datetime.date(2017, 12, 19))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 20))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 21))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 22))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 27))
+        generator = bank_holidays.work_days_after(date=datetime.date(2017, 12, 30))
+        self.assertSequenceEqual(
+            list(itertools.islice(generator, 3)),
+            [datetime.date(2018, 1, 2), datetime.date(2018, 1, 3), datetime.date(2018, 1, 4)],
+        )
+        generator = bank_holidays.work_days_after(division=BankHolidays.SCOTLAND, date=datetime.date(2017, 12, 30))
+        self.assertSequenceEqual(
+            list(itertools.islice(generator, 3)),
+            [datetime.date(2018, 1, 3), datetime.date(2018, 1, 4), datetime.date(2018, 1, 5)],
+        )
+        generator = bank_holidays.work_days_after(date=datetime.date(2050, 12, 24))
+        self.assertEqual(len(list(itertools.islice(generator, 14))), 14)
+
+    def test_past_work_day_generators(self):
+        bank_holidays = self.get_bank_holidays_using_local_data()
+        generator = bank_holidays.work_days_before(date=datetime.date(2018, 1, 3))
+        self.assertEqual(next(generator), datetime.date(2018, 1, 2))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 29))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 28))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 27))
+        generator = bank_holidays.work_days_before(division=BankHolidays.SCOTLAND, date=datetime.date(2018, 1, 3))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 29))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 28))
+        self.assertEqual(next(generator), datetime.date(2017, 12, 27))
+        generator = bank_holidays.work_days_after(date=datetime.date(2000, 1, 3))
+        self.assertEqual(len(list(itertools.islice(generator, 14))), 14)
