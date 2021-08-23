@@ -68,6 +68,9 @@ Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` 
 History
 -------
 
+0.10
+    Added methods to generate series of holidays and work days before/after starting from a given date.
+
 0.9
     Added methods to find previous bank holidays / work days, mirroring the existing methods.
     Removed support for python versions older than 3.6.
