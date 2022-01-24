@@ -68,6 +68,10 @@ Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` 
 History
 -------
 
+0.11
+    Updated cached bank holidays file to include latest holidays published by GOV.UK.
+    Added python 3.10 to testing matrix.
+
 0.10
     Added methods to generate series of holidays and work days before/after starting from a given date.
 

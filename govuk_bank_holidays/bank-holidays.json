@@ -541,6 +541,54 @@
         "date": "2022-12-27",
         "notes": "Substitute day",
         "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2023-01-02",
+        "notes": "Substitute day",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2023-04-07",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Easter Monday",
+        "date": "2023-04-10",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2023-05-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2023-05-29",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2023-08-28",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2023-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2023-12-26",
+        "notes": "",
+        "bunting": true
       }
     ]
   },
@@ -1151,6 +1199,60 @@
         "title": "Christmas Day",
         "date": "2022-12-27",
         "notes": "Substitute day",
+        "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2023-01-02",
+        "notes": "Substitute day",
+        "bunting": true
+      },
+      {
+        "title": "2nd January",
+        "date": "2023-01-03",
+        "notes": "Substitute day",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2023-04-07",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2023-05-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2023-05-29",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2023-08-07",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "St Andrew’s Day",
+        "date": "2023-11-30",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2023-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2023-12-26",
+        "notes": "",
         "bunting": true
       }
     ]
@@ -1828,6 +1930,66 @@
         "title": "Christmas Day",
         "date": "2022-12-27",
         "notes": "Substitute day",
+        "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2023-01-02",
+        "notes": "Substitute day",
+        "bunting": true
+      },
+      {
+        "title": "St Patrick’s Day",
+        "date": "2023-03-17",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2023-04-07",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Easter Monday",
+        "date": "2023-04-10",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2023-05-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2023-05-29",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Battle of the Boyne (Orangemen’s Day)",
+        "date": "2023-07-12",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2023-08-28",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2023-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2023-12-26",
+        "notes": "",
         "bunting": true
       }
     ]
