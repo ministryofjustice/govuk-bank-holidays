@@ -31,7 +31,7 @@ setup(
     license='MIT',
     description='Tool to load UK bank holidays from GOV.UK',
     long_description=README,
-    keywords='bank holidays govuk',
+    keywords='bank holidays govuk uk',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',

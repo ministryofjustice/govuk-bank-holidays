@@ -73,7 +73,7 @@ Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` 
 History
 -------
 
-Unreleased
+0.12
     Removed support for python versions older than 3.7.
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
     Moved code style linting from unit test to github action.
