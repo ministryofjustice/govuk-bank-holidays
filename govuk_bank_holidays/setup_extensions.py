@@ -1,4 +1,5 @@
 import distutils.log
+import json
 import os
 import pathlib
 import subprocess
@@ -72,7 +73,42 @@ class CompileMessages(MessagesCommand):
             subprocess.check_call(msgfmt + ['--output-file', mo_path, po_path])
 
 
+class UpdateCachedHolidays(setuptools.Command):
+    description = 'update locally-cached bank holidays from GOV.UK'
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        import requests
+        from govuk_bank_holidays.bank_holidays import BankHolidays
+
+        self.announce('Updating cached bank holidays', level=distutils.log.INFO)
+        root_path = pathlib.Path(__file__).parent.parent
+        cached_path = root_path / 'govuk_bank_holidays' / 'bank-holidays.json'
+        with cached_path.open() as f:
+            cached_data = json.load(f)
+        latest_data = requests.get(BankHolidays.source_url).json()
+        for division, latest_events in latest_data.items():
+            cached_events_dict = dict((event['date'], event) for event in cached_data[division]['events'])
+            latest_events_dict = dict((event['date'], event) for event in latest_events['events'])
+            for date, event in latest_events_dict.items():
+                cached_events_dict[date] = event
+            cached_data[division] = dict(
+                division=division,
+                events=list(cached_events_dict.values()),
+            )
+        with cached_path.open('w') as f:
+            json.dump(cached_data, f, ensure_ascii=False, indent=2)
+            f.write('\n')
+
+
 command_classes = {
     'makemessages': MakeMessages,
     'compilemessages': CompileMessages,
+    'updatecachedholidays': UpdateCachedHolidays,
 }

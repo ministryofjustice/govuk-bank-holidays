@@ -54,6 +54,8 @@ Development
 
 Please report bugs and open pull requests on `GitHub`_.
 
+Update cached bank holidays from GOV.UK using ``python setup.py updatecachedholidays``.
+
 Update translation files using ``python setup.py makemessages``, e.g. when updating the i18n module or when adding new languages.
 Compile them using ``python setup.py compilemessages``; this is *required* before testing and distribution.
 
@@ -75,6 +77,7 @@ Unreleased
     Removed support for python versions older than 3.7.
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
     Moved code style linting from unit test to github action.
+    Added setup.py command to update cached bank holidays from GOV.UK.
 
 0.11
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
