@@ -68,9 +68,8 @@ Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` 
 History
 -------
 
-0.12
+Unreleased
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
-
 
 0.11
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
