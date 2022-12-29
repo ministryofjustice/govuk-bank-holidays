@@ -15,10 +15,7 @@ with open(os.path.join(root_path, 'README.rst')) as readme:
     README = readme.read()
 
 install_requires = ['requests']
-tests_require = [
-    'flake8', 'flake8-bugbear', 'flake8-quotes', 'flake8-blind-except', 'flake8-debugger', 'pep8-naming',
-    'responses',
-]
+tests_require = ['responses']
 
 package_info = importlib.import_module('govuk_bank_holidays')
 setup_extensions = importlib.import_module('govuk_bank_holidays.setup_extensions')

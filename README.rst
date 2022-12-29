@@ -46,8 +46,11 @@ please note that the Welsh version may contain errors.
 Development
 -----------
 
-.. image:: https://github.com/ministryofjustice/govuk-bank-holidays/workflows/Run%20tests/badge.svg?branch=main
-    :target: https://github.com/ministryofjustice/govuk-bank-holidays/actions
+.. image:: https://github.com/ministryofjustice/govuk-bank-holidays/actions/workflows/test.yml/badge.svg?branch=main
+    :target: https://github.com/ministryofjustice/govuk-bank-holidays/actions/workflows/test.yml
+
+.. image:: https://github.com/ministryofjustice/govuk-bank-holidays/actions/workflows/lint.yml/badge.svg?branch=main
+    :target: https://github.com/ministryofjustice/govuk-bank-holidays/actions/workflows/lint.yml
 
 Please report bugs and open pull requests on `GitHub`_.
 
@@ -71,6 +74,7 @@ History
 Unreleased
     Removed support for python versions older than 3.7.
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
+    Moved code style linting from unit test to github action.
 
 0.11
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
