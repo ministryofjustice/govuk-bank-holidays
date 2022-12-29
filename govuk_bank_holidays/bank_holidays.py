@@ -3,7 +3,7 @@ import functools
 import gettext
 import json
 import logging
-import os
+import pathlib
 
 import requests
 
@@ -28,7 +28,8 @@ class BankHolidays:
 
     @classmethod
     def load_backup_data(cls):
-        with open(os.path.join(os.path.dirname(__file__), 'bank-holidays.json')) as f:
+        backup_path = pathlib.Path(__file__).parent / 'bank-holidays.json'
+        with backup_path.open() as f:
             return json.load(f)
 
     def __init__(self, locale=None, weekend=(5, 6), use_cached_holidays=False):
@@ -44,15 +45,19 @@ class BankHolidays:
             data = self.load_backup_data()
         else:
             try:
-                logger.debug('Downloading bank holidays from %s' % self.source_url)
+                logger.debug(f'Downloading bank holidays from {self.source_url}')
                 data = requests.get(self.source_url).json()
             except (requests.RequestException, ValueError):
                 logger.warning('Using backup bank holiday data')
                 data = self.load_backup_data()
 
         if locale:
-            trans = gettext.translation('messages', fallback=True, languages=[locale],
-                                        localedir=os.path.join(os.path.dirname(__file__), 'locale'))
+            trans = gettext.translation(
+                'messages',
+                localedir=pathlib.Path(__file__).parent / 'locale',
+                languages=[locale],
+                fallback=True,
+            )
         else:
             trans = gettext.NullTranslations()
         trans = trans.ugettext if hasattr(trans, 'ugettext') else trans.gettext
