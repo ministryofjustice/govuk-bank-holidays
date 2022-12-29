@@ -2,105 +2,117 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-29 18:19+0000\n"
+"POT-Creation-Date: 2022-12-29 21:00+0000\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: govuk_bank_holidays/i18n.py:7
+#: govuk_bank_holidays/i18n.py:16
 msgid "Bank holiday"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:8
+#: govuk_bank_holidays/i18n.py:17
 msgid "Bank holidays"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:10
+#: govuk_bank_holidays/i18n.py:19
 msgid "England"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:11
+#: govuk_bank_holidays/i18n.py:20
 msgid "Wales"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:12
+#: govuk_bank_holidays/i18n.py:21
 msgid "England and Wales"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:13
+#: govuk_bank_holidays/i18n.py:22
 msgid "Scotland"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:14
+#: govuk_bank_holidays/i18n.py:23
 msgid "Northern Ireland"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:15
+#: govuk_bank_holidays/i18n.py:24
 msgid "United Kingdom"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:17
+#: govuk_bank_holidays/i18n.py:26
 msgid "2nd January"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:18
+#: govuk_bank_holidays/i18n.py:27
 msgid "Battle of the Boyne (Orangemen’s Day)"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:19
+#: govuk_bank_holidays/i18n.py:28
 msgid "Boxing Day"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:20
+#: govuk_bank_holidays/i18n.py:29
 msgid "Christmas Day"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:21
+#: govuk_bank_holidays/i18n.py:30
 msgid "Early May bank holiday"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:22
+#: govuk_bank_holidays/i18n.py:31
 msgid "Early May bank holiday (VE day)"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:23
+#: govuk_bank_holidays/i18n.py:32
 msgid "Easter Monday"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:24
+#: govuk_bank_holidays/i18n.py:33
 msgid "Good Friday"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:25
+#: govuk_bank_holidays/i18n.py:34
 msgid "New Year’s Day"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:26
-msgid "Queen’s Diamond Jubilee"
-msgstr ""
-
-#: govuk_bank_holidays/i18n.py:27
+#: govuk_bank_holidays/i18n.py:35
 msgid "Spring bank holiday"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:28
+#: govuk_bank_holidays/i18n.py:36
 msgid "St Andrew’s Day"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:29
+#: govuk_bank_holidays/i18n.py:37
 msgid "St Patrick’s Day"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:30
+#: govuk_bank_holidays/i18n.py:38
 msgid "Summer bank holiday"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:32
+#: govuk_bank_holidays/i18n.py:40
+msgid "Queen’s Diamond Jubilee"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:41
+msgid "Platinum Jubilee bank holiday"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:42
+msgid "Bank Holiday for the State Funeral of Queen Elizabeth II"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:43
+msgid "Bank holiday for the coronation of King Charles III"
+msgstr ""
+
+#: govuk_bank_holidays/i18n.py:45
 msgid "Extra bank holiday"
 msgstr ""
 
-#: govuk_bank_holidays/i18n.py:33
+#: govuk_bank_holidays/i18n.py:46
 msgid "Substitute day"
 msgstr ""

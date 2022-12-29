@@ -2,105 +2,117 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-29 18:19+0000\n"
+"POT-Creation-Date: 2022-12-29 21:00+0000\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;\n"
 
-#: govuk_bank_holidays/i18n.py:7
+#: govuk_bank_holidays/i18n.py:16
 msgid "Bank holiday"
 msgstr "Gŵyl y banc"
 
-#: govuk_bank_holidays/i18n.py:8
+#: govuk_bank_holidays/i18n.py:17
 msgid "Bank holidays"
 msgstr "Gwyliau banc"
 
-#: govuk_bank_holidays/i18n.py:10
+#: govuk_bank_holidays/i18n.py:19
 msgid "England"
 msgstr "Lloegr"
 
-#: govuk_bank_holidays/i18n.py:11
+#: govuk_bank_holidays/i18n.py:20
 msgid "Wales"
 msgstr "Cymru"
 
-#: govuk_bank_holidays/i18n.py:12
+#: govuk_bank_holidays/i18n.py:21
 msgid "England and Wales"
 msgstr "Cymru a Lloegr"
 
-#: govuk_bank_holidays/i18n.py:13
+#: govuk_bank_holidays/i18n.py:22
 msgid "Scotland"
 msgstr "Yr Alban"
 
-#: govuk_bank_holidays/i18n.py:14
+#: govuk_bank_holidays/i18n.py:23
 msgid "Northern Ireland"
 msgstr "Gogledd Iwerddon"
 
-#: govuk_bank_holidays/i18n.py:15
+#: govuk_bank_holidays/i18n.py:24
 msgid "United Kingdom"
 msgstr "Deyrnas Unedig"
 
-#: govuk_bank_holidays/i18n.py:17
+#: govuk_bank_holidays/i18n.py:26
 msgid "2nd January"
 msgstr "2 Ionawr"
 
-#: govuk_bank_holidays/i18n.py:18
+#: govuk_bank_holidays/i18n.py:27
 msgid "Battle of the Boyne (Orangemen’s Day)"
 msgstr "Brwydr y Boyne (Diwrnod Orangemen yn)"
 
-#: govuk_bank_holidays/i18n.py:19
+#: govuk_bank_holidays/i18n.py:28
 msgid "Boxing Day"
 msgstr "Gŵyl San Steffan"
 
-#: govuk_bank_holidays/i18n.py:20
+#: govuk_bank_holidays/i18n.py:29
 msgid "Christmas Day"
 msgstr "Dydd Nadolig"
 
-#: govuk_bank_holidays/i18n.py:21
+#: govuk_bank_holidays/i18n.py:30
 msgid "Early May bank holiday"
 msgstr "Mai gŵyl y banc Cynnar"
 
-#: govuk_bank_holidays/i18n.py:22
+#: govuk_bank_holidays/i18n.py:31
 msgid "Early May bank holiday (VE day)"
 msgstr "Mai gŵyl y banc Cynnar (Diwrnod VE)"
 
-#: govuk_bank_holidays/i18n.py:23
+#: govuk_bank_holidays/i18n.py:32
 msgid "Easter Monday"
 msgstr "Llun y Pasg"
 
-#: govuk_bank_holidays/i18n.py:24
+#: govuk_bank_holidays/i18n.py:33
 msgid "Good Friday"
 msgstr "Dydd Gwener y Groglith"
 
-#: govuk_bank_holidays/i18n.py:25
+#: govuk_bank_holidays/i18n.py:34
 msgid "New Year’s Day"
 msgstr "Dydd Calan"
 
-#: govuk_bank_holidays/i18n.py:26
-msgid "Queen’s Diamond Jubilee"
-msgstr "Jiwbilî Diemwnt y Frenhines"
-
-#: govuk_bank_holidays/i18n.py:27
+#: govuk_bank_holidays/i18n.py:35
 msgid "Spring bank holiday"
 msgstr "Gŵyl y banc y Gwanwyn"
 
-#: govuk_bank_holidays/i18n.py:28
+#: govuk_bank_holidays/i18n.py:36
 msgid "St Andrew’s Day"
 msgstr "Dydd Sant Andreas"
 
-#: govuk_bank_holidays/i18n.py:29
+#: govuk_bank_holidays/i18n.py:37
 msgid "St Patrick’s Day"
 msgstr "Dydd Gŵyl Padrig"
 
-#: govuk_bank_holidays/i18n.py:30
+#: govuk_bank_holidays/i18n.py:38
 msgid "Summer bank holiday"
 msgstr "Gŵyl y banc haf"
 
-#: govuk_bank_holidays/i18n.py:32
+#: govuk_bank_holidays/i18n.py:40
+msgid "Queen’s Diamond Jubilee"
+msgstr "Jiwbilî Diemwnt y Frenhines"
+
+#: govuk_bank_holidays/i18n.py:41
+msgid "Platinum Jubilee bank holiday"
+msgstr "Gŵyl banc y Jiwbilî Platinwm"
+
+#: govuk_bank_holidays/i18n.py:42
+msgid "Bank Holiday for the State Funeral of Queen Elizabeth II"
+msgstr "Gŵyl y Banc ar gyfer Angladd Gwladol y Frenhines Elizabeth II"
+
+#: govuk_bank_holidays/i18n.py:43
+msgid "Bank holiday for the coronation of King Charles III"
+msgstr "Gŵyl y banc i goroni'r Brenin Siarl III"
+
+#: govuk_bank_holidays/i18n.py:45
 msgid "Extra bank holiday"
 msgstr "Gŵyl y banc ychwanegol"
 
-#: govuk_bank_holidays/i18n.py:33
+#: govuk_bank_holidays/i18n.py:46
 msgid "Substitute day"
 msgstr "Diwrnod rhodder"

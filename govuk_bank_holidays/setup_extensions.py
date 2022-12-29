@@ -1,4 +1,5 @@
 import distutils.log
+import itertools
 import json
 import os
 import pathlib
@@ -83,7 +84,7 @@ class UpdateCachedHolidays(setuptools.Command):
     def finalize_options(self):
         pass
 
-    def run(self):
+    def update_cache(self):
         import requests
         from govuk_bank_holidays.bank_holidays import BankHolidays
 
@@ -105,6 +106,28 @@ class UpdateCachedHolidays(setuptools.Command):
         with cached_path.open('w') as f:
             json.dump(cached_data, f, ensure_ascii=False, indent=2)
             f.write('\n')
+        return cached_data
+
+    def check_i18n(self, cached_data):
+        from govuk_bank_holidays.i18n import translatable_messages
+
+        event_messages = set()
+        events = itertools.chain.from_iterable(events['events'] for events in cached_data.values())
+        for event in events:
+            event_messages.add(event['title'])
+            if event.get('notes'):
+                event_messages.add(event['notes'])
+        untranslatable_messages = event_messages - translatable_messages
+        if untranslatable_messages:
+            untranslatable_messages = '\n- '.join(untranslatable_messages)
+            self.announce(
+                f'Translation markers missing from govuk_bank_holidays.i18n:\n- {untranslatable_messages}',
+                level=distutils.log.WARN,
+            )
+
+    def run(self):
+        cached_data = self.update_cache()
+        self.check_i18n(cached_data)
 
 
 command_classes = {
