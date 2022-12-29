@@ -1,6 +1,8 @@
 def gettext(s):
     return s
 
+# Known holiday names that appear in GOV.UK sources are listed here for translation
+
 
 gettext('Bank holiday')
 gettext('Bank holidays')
