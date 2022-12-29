@@ -38,6 +38,7 @@ class BankHolidays:
         :param weekend: days of the week that are never work days; defaults to Saturday and Sunday
         :param use_cached_holidays: use the cached local copy of the holiday list
         """
+        self._get_known_holiday_date_set_cache = {}
         self.weekend = set(weekend)
         if use_cached_holidays:
             data = self.load_backup_data()
@@ -110,16 +111,17 @@ class BankHolidays:
             holidays = filter(lambda holiday: holiday['date'].year == year, holidays)
         return list(holidays)
 
-    @functools.lru_cache()
     def _get_known_holiday_date_set(self, division=None):
         """
         Returns an unordered set of all known bank holiday dates
         NB: If no division is specified, only holidays common to *all* divisions are returned.
         """
-        return set(
-            holiday['date']
-            for holiday in self.get_holidays(division=division)
-        )
+        if division not in self._get_known_holiday_date_set_cache:
+            self._get_known_holiday_date_set_cache[division] = set(
+                holiday['date']
+                for holiday in self.get_holidays(division=division)
+            )
+        return self._get_known_holiday_date_set_cache[division]
 
     def is_holiday(self, date, division=None):
         """
