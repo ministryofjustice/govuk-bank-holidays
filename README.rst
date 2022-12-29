@@ -69,6 +69,7 @@ History
 -------
 
 Unreleased
+    Removed support for python versions older than 3.7.
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
 
 0.11
