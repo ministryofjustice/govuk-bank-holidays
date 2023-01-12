@@ -3,3 +3,5 @@ include README.rst
 include govuk_bank_holidays/bank-holidays.json
 recursive-include govuk_bank_holidays/locale *.mo
 recursive-include govuk_bank_holidays/locale *.po
+global-exclude __pycache__
+global-exclude *.py[co]
