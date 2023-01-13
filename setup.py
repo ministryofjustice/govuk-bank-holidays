@@ -47,6 +47,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     cmdclass=setup_extensions.command_classes,
+    python_requires='>=3.6',  # looser requirement than what's tested
     install_requires=install_requires,
     tests_require=tests_require,
     test_suite='tests',
