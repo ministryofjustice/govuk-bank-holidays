@@ -13,7 +13,7 @@ class MessagesCommand(setuptools.Command):
     domain = 'messages'
 
     def __init__(self, *args, **kwargs):
-        setuptools.Command.__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.root_path = pathlib.Path(__file__).parent.parent
         self.locale_path = self.root_path / 'govuk_bank_holidays' / 'locale'
@@ -37,11 +37,13 @@ class MessagesCommand(setuptools.Command):
 
     def run(self):
         cwd = os.getcwd()
-        os.chdir(self.root_path)
-        self.run_command()
-        os.chdir(cwd)
+        try:
+            os.chdir(self.root_path)
+            self.run_gettext_subprocess()
+        finally:
+            os.chdir(cwd)
 
-    def run_command(self):
+    def run_gettext_subprocess(self):
         raise NotImplementedError
 
 
@@ -49,7 +51,7 @@ class MakeMessages(MessagesCommand):
     description = 'update localisation messages files'
     source_files = ['govuk_bank_holidays/i18n.py']
 
-    def run_command(self):
+    def run_gettext_subprocess(self):
         self.announce('Writing intermediate POT file', level=distutils.log.INFO)
         xgettext = ['xgettext', '-d', self.domain, '-o', self.pot_path,
                     '--language=Python', '--from-code=UTF-8', '--no-wrap']
@@ -65,7 +67,7 @@ class MakeMessages(MessagesCommand):
 class CompileMessages(MessagesCommand):
     description = 'compile localisation messages files'
 
-    def run_command(self):
+    def run_gettext_subprocess(self):
         msgfmt = ['msgfmt', '--check']
         for locale in self.locales:
             self.announce(f'Compiling PO file for {locale} locale', level=distutils.log.INFO)
