@@ -62,11 +62,11 @@ Compile them using ``python setup.py compilemessages``; this is *required* befor
 Use ``python setup.py compilemessages test`` to run all tests locally.
 Alternatively, you can use ``tox`` if you have multiple python versions.
 
-Distribute a new version by:
+Distribute a new version to `PyPI`_ by:
 
 - updating the ``VERSION`` tuple in ``govuk_bank_holidays``
 - adding a note to the `History`_
-- publishing a release on GitHub which triggers an upload to PYPI
+- publishing a release on GitHub which triggers an upload to PyPI
 
 Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` locally.
 
@@ -96,7 +96,7 @@ History
 
 0.8
     The library does not differ from 0.7.
-    This release is the first to use GitHub Actions to automatically publish to PYPI.
+    This release is the first to use GitHub Actions to automatically publish to PyPI.
 
 0.7
     Minor documentation update.
@@ -134,3 +134,4 @@ See LICENSE.txt for further details.
 
 .. _GOV.UK: https://www.gov.uk/bank-holidays
 .. _GitHub: https://github.com/ministryofjustice/govuk-bank-holidays
+.. _PyPI: https://pypi.org/project/govuk-bank-holidays/
