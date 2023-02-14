@@ -23,7 +23,11 @@ setup(
     author=package_info.__author__,
     author_email='dev@digital.justice.gov.uk',
     url='https://github.com/ministryofjustice/govuk-bank-holidays',
-    packages=['govuk_bank_holidays'],
+    packages=[
+        'govuk_bank_holidays',
+        'govuk_bank_holidays.locale.cy.LC_MESSAGES',
+        'govuk_bank_holidays.locale.en.LC_MESSAGES',
+    ],
     include_package_data=True,
     license='MIT',
     description='Tool to load UK bank holidays from GOV.UK',
