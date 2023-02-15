@@ -23,5 +23,7 @@ jobs:
         run: sudo apt-get install gettext
       - name: Update setuptools pip and wheel
         run: pip install -U setuptools pip wheel
+      - name: Install testing requirements
+        run: pip install -r requirements-test.txt
       - name: Run tests
-        run: python setup.py compilemessages test
+        run: python -m tests

@@ -59,19 +59,22 @@ Update cached bank holidays from GOV.UK using ``python setup.py updatecachedholi
 Update translation files using ``python setup.py makemessages``, e.g. when updating the i18n module or when adding new languages.
 Compile them using ``python setup.py compilemessages``; this is *required* before testing and distribution.
 
-Use ``python setup.py compilemessages test`` to run all tests locally.
+Use ``python -m tests`` to run all tests locally.
 Alternatively, you can use ``tox`` if you have multiple python versions.
 
-Distribute a new version to `PyPI`_ by:
+[Only for GitHub team members] Distribute a new version to `PyPI`_ by:
 
-- updating the ``VERSION`` tuple in ``govuk_bank_holidays``
+- updating the ``VERSION`` tuple in ``govuk_bank_holidays/__init__.py``
 - adding a note to the `History`_
-- publishing a release on GitHub which triggers an upload to PyPI
-
-Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` locally.
+- publishing a release on GitHub which triggers an upload to PyPI;
+  alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` locally
 
 History
 -------
+
+Unreleased
+    Migrated test, build and release processes away from deprecated setuptools commands.
+    The ``BankHolidays`` class has a new ``ALL_DIVISIONS`` constant.
 
 0.13
     The library does not differ from 0.12.
