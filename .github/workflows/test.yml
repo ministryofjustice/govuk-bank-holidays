@@ -26,4 +26,6 @@ jobs:
       - name: Install testing requirements
         run: pip install -r requirements-test.txt
       - name: Run tests
-        run: python -m tests
+        run: |
+          python scripts/messages.py compile
+          python -m tests

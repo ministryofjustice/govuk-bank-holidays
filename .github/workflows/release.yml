@@ -21,7 +21,8 @@ jobs:
         run: pip install twine
       - name: Build and release to PYPI
         run: |
-          python setup.py compilemessages sdist bdist_wheel
+          python scripts/messages.py compile
+          python setup.py sdist bdist_wheel
           twine upload --non-interactive dist/*
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}

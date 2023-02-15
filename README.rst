@@ -54,10 +54,11 @@ Development
 
 Please report bugs and open pull requests on `GitHub`_.
 
-Update cached bank holidays from GOV.UK using ``python setup.py updatecachedholidays``.
+Update cached bank holidays from GOV.UK using ``python scripts/update-cache.py``.
 
-Update translation files using ``python setup.py makemessages``, e.g. when updating the i18n module or when adding new languages.
-Compile them using ``python setup.py compilemessages``; this is *required* before testing and distribution.
+Update translation files using ``python scripts/messages.py update``, e.g. when updating the i18n module or when adding new languages.
+Compile them using ``python scripts/messages.py compile``; this is *required* before testing and distribution.
+Updating and compiling translation files requires the gettext system package to be installed.
 
 Use ``python -m tests`` to run all tests locally.
 Alternatively, you can use ``tox`` if you have multiple python versions.
@@ -67,13 +68,14 @@ Alternatively, you can use ``tox`` if you have multiple python versions.
 - updating the ``VERSION`` tuple in ``govuk_bank_holidays/__init__.py``
 - adding a note to the `History`_
 - publishing a release on GitHub which triggers an upload to PyPI;
-  alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` locally
+  alternatively, run ``python scripts/messages.py compile; python setup.py sdist bdist_wheel upload`` locally
 
 History
 -------
 
 Unreleased
     Migrated test, build and release processes away from deprecated setuptools commands.
+    Translation files are updated and compiled through scripts which are not included in distribution.
     The ``BankHolidays`` class has a new ``ALL_DIVISIONS`` constant.
 
 0.13

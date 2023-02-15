@@ -18,6 +18,7 @@ clean:
 
 test:
 	pip install -r requirements-test.txt
+	python scripts/messages.py compile
 	python -m tests
 
 test-all:
@@ -35,5 +36,6 @@ lint:
 
 release: clean
 	pip install --upgrade twine
-	python setup.py compilemessages sdist bdist_wheel
+	python scripts/messages.py compile
+	python setup.py sdist bdist_wheel
 	twine upload dist/*
