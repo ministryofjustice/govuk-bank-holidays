@@ -182,11 +182,18 @@ class BankHolidayTestCase(unittest.TestCase):
         self.assertTrue(bank_holidays.get_holidays())
 
     def test_localisation(self):
-        bank_holidays = self.get_bank_holidays_using_local_data(locale='cy')
+        bank_holidays = self.get_bank_holidays_using_local_data(locale='cy')  # Welsh
         holidays = bank_holidays.get_holidays(division=BankHolidays.ENGLAND_AND_WALES)
         holiday_names = set(holiday['title'] for holiday in holidays)
         self.assertIn('Dydd Nadolig', holiday_names)
         self.assertNotIn('Christmas Day', holiday_names)
+
+    def test_localisation_fallback(self):
+        bank_holidays = self.get_bank_holidays_using_local_data(locale='gd')  # Scottish Gaelic
+        holidays = bank_holidays.get_holidays(division=BankHolidays.SCOTLAND)
+        holiday_names = set(holiday['title'] for holiday in holidays)
+        self.assertIn('Christmas Day', holiday_names)
+        self.assertNotIn('Latha na Nollaige', holiday_names)
 
     def test_future_holiday_generators(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
