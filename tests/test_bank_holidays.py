@@ -252,7 +252,3 @@ class BankHolidayTestCase(unittest.TestCase):
         self.assertEqual(next(generator), datetime.date(2017, 12, 27))
         generator = bank_holidays.work_days_after(date=datetime.date(2000, 1, 3))
         self.assertEqual(len(list(itertools.islice(generator, 14))), 14)
-
-
-if __name__ == '__main__':
-    unittest.main()
