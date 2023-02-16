@@ -37,17 +37,6 @@ class BankHoliday:
         except AttributeError:
             raise KeyError
 
-    def keys(self) -> typing.Iterable[str]:
-        return (field.name for field in dataclasses.fields(self))
-
-    def items(self) -> typing.Iterable[typing.Tuple[str, typing.Union[str, datetime.date, bool]]]:
-        for key in self.keys():
-            yield key, getattr(self, key)
-
-    def values(self) -> typing.Iterable[typing.Union[str, datetime.date, bool]]:
-        for _key, value in self.items():
-            yield value
-
 
 class Division(str, enum.Enum):
     """

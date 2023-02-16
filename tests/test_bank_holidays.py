@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import dataclasses
 import datetime
 import itertools
 import typing
@@ -27,7 +28,8 @@ class BankHolidayTestCase(unittest.TestCase):
         last_holiday = None
         expected_keys = ['bunting', 'date', 'notes', 'title']
         for holiday in holidays:
-            self.assertListEqual(sorted(holiday.keys()), expected_keys,
+            present_keys = sorted(field.name for field in dataclasses.fields(holiday))
+            self.assertListEqual(present_keys, expected_keys,
                                  msg='Unexpected or missing dictionary keys')
             self.assertIsInstance(holiday.date, datetime.date)
             if last_holiday:
