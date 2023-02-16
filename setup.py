@@ -49,7 +49,7 @@ setup(
     ],
     cmdclass=setup_extensions.command_classes,
     python_requires='>=3.6',  # looser requirement than what's tested
-    install_requires=['requests'],
+    install_requires=['requests', 'dataclasses ; python_version<"3.7"'],
     tests_require=['responses'],
     test_suite='tests',
 )

@@ -8,7 +8,7 @@ and `gettext` function here is a dummy to make the module importable.
 translatable_messages = set()
 
 
-def gettext(s):
+def gettext(s: str) -> str:
     translatable_messages.add(s)
     return s
 
