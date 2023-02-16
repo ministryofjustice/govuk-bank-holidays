@@ -71,7 +71,7 @@ Alternatively, you can use ``tox`` if you have multiple python versions.
 - updating the ``VERSION`` tuple in ``govuk_bank_holidays/__init__.py``
 - adding a note to the `History`_
 - publishing a release on GitHub which triggers an upload to PyPI;
-  alternatively, run ``python scripts/messages.py compile; python setup.py sdist bdist_wheel upload`` locally
+  alternatively, run ``python scripts/messages.py compile; python -m build; twine upload dist/*`` locally
 
 History
 -------

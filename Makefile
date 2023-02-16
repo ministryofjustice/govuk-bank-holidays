@@ -43,7 +43,7 @@ lint:
 	flake8 --verbose
 
 release: clean
-	pip install --upgrade twine
+	pip install -r requirements-release.txt
 	python scripts/messages.py compile
-	python setup.py sdist bdist_wheel
+	python -m build
 	twine upload dist/*
