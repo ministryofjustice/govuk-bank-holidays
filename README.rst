@@ -54,6 +54,9 @@ Development
 
 Please report bugs and open pull requests on `GitHub`_.
 
+To work on changes to this library, it’s recommended to install it in editable mode into a virtual environment,
+i.e. ``pip install --editable .``
+
 Update cached bank holidays from GOV.UK using ``python scripts/update-cache.py``.
 
 Update translation files using ``python scripts/messages.py update``, e.g. when updating the i18n module or when adding new languages.

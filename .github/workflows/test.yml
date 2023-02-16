@@ -27,5 +27,6 @@ jobs:
         run: pip install -r requirements-test.txt
       - name: Run tests
         run: |
+          pip install --editable .
           python scripts/messages.py compile
           python -m tests
