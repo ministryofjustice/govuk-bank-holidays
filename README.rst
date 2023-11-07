@@ -54,24 +54,32 @@ Development
 
 Please report bugs and open pull requests on `GitHub`_.
 
-Update cached bank holidays from GOV.UK using ``python setup.py updatecachedholidays``.
+To work on changes to this library, it’s recommended to install it in editable mode into a virtual environment,
+i.e. ``pip install --editable .``
 
-Update translation files using ``python setup.py makemessages``, e.g. when updating the i18n module or when adding new languages.
-Compile them using ``python setup.py compilemessages``; this is *required* before testing and distribution.
+Update cached bank holidays from GOV.UK using ``python scripts/update-cache.py``.
 
-Use ``python setup.py compilemessages test`` to run all tests locally.
+Update translation files using ``python scripts/messages.py update``, e.g. when updating the i18n module or when adding new languages.
+Compile them using ``python scripts/messages.py compile``; this is *required* before testing and distribution.
+Updating and compiling translation files requires the gettext system package to be installed.
+
+Use ``python -m tests`` to run all tests locally.
 Alternatively, you can use ``tox`` if you have multiple python versions.
 
-Distribute a new version to `PyPI`_ by:
+[Only for GitHub team members] Distribute a new version to `PyPI`_ by:
 
-- updating the ``VERSION`` tuple in ``govuk_bank_holidays``
+- updating the ``VERSION`` tuple in ``govuk_bank_holidays/__init__.py``
 - adding a note to the `History`_
-- publishing a release on GitHub which triggers an upload to PyPI
-
-Alternatively, run ``python setup.py compilemessages sdist bdist_wheel upload`` locally.
+- publishing a release on GitHub which triggers an upload to PyPI;
+  alternatively, run ``python scripts/messages.py compile; python -m build; twine upload dist/*`` locally
 
 History
 -------
+
+Unreleased
+    Migrated test, build and release processes away from deprecated setuptools commands.
+    Translation files are updated and compiled through scripts which are not included in distribution.
+    The ``BankHolidays`` class has a new ``ALL_DIVISIONS`` constant.
 
 0.13
     The library does not differ from 0.12.

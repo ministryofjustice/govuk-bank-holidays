@@ -25,6 +25,7 @@ class BankHolidays:
     ENGLAND_AND_WALES = 'england-and-wales'
     SCOTLAND = 'scotland'
     NORTHERN_IRELAND = 'northern-ireland'
+    ALL_DIVISIONS = (ENGLAND_AND_WALES, SCOTLAND, NORTHERN_IRELAND)
 
     @classmethod
     def load_backup_data(cls):
