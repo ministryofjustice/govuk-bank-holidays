@@ -19,6 +19,7 @@ class BankHolidays:
     Methods of this class will default to only considering bank holidays common to *all* divisions
     unless a specific division is provided.
     """
+
     source_url = 'https://www.gov.uk/bank-holidays.json'
 
     # division constants
@@ -110,7 +111,7 @@ class BankHolidays:
                 (
                     set(map(lambda holiday: holiday['date'], division_holidays))
                     for division, division_holidays in self.data.items()
-                )
+                ),
             )
             holidays = filter(lambda holiday: holiday['date'] in dates_in_common, holidays)
         if year:
