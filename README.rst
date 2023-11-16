@@ -79,6 +79,7 @@ History
 Unreleased
     Migrated test, build and release processes away from deprecated setuptools commands.
     Translation files are updated and compiled through scripts which are not included in distribution.
+    Switched to `ruff <https://github.com/astral-sh/ruff>`_ for code linting and formatting.
     The ``BankHolidays`` class has a new ``ALL_DIVISIONS`` constant.
 
 0.13
