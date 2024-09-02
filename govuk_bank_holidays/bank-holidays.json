@@ -697,6 +697,54 @@
         "date": "2025-12-26",
         "notes": "",
         "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2026-01-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2026-04-03",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Easter Monday",
+        "date": "2026-04-06",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2026-05-04",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2026-05-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2026-08-31",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2026-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2026-12-28",
+        "notes": "Substitute day",
+        "bunting": true
       }
     ]
   },
@@ -1481,6 +1529,60 @@
         "title": "Boxing Day",
         "date": "2025-12-26",
         "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2026-01-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "2nd January",
+        "date": "2026-01-02",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2026-04-03",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2026-05-04",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2026-05-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2026-08-03",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "St Andrew’s Day",
+        "date": "2026-11-30",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2026-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2026-12-28",
+        "notes": "Substitute day",
         "bunting": true
       }
     ]
@@ -2350,6 +2452,66 @@
         "title": "Boxing Day",
         "date": "2025-12-26",
         "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "New Year’s Day",
+        "date": "2026-01-01",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "St Patrick’s Day",
+        "date": "2026-03-17",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Good Friday",
+        "date": "2026-04-03",
+        "notes": "",
+        "bunting": false
+      },
+      {
+        "title": "Easter Monday",
+        "date": "2026-04-06",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Early May bank holiday",
+        "date": "2026-05-04",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Spring bank holiday",
+        "date": "2026-05-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Battle of the Boyne (Orangemen’s Day)",
+        "date": "2026-07-13",
+        "notes": "Substitute day",
+        "bunting": false
+      },
+      {
+        "title": "Summer bank holiday",
+        "date": "2026-08-31",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Christmas Day",
+        "date": "2026-12-25",
+        "notes": "",
+        "bunting": true
+      },
+      {
+        "title": "Boxing Day",
+        "date": "2026-12-28",
+        "notes": "Substitute day",
         "bunting": true
       }
     ]
