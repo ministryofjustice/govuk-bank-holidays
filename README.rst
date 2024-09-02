@@ -76,6 +76,9 @@ Alternatively, you can use ``tox`` if you have multiple python versions.
 History
 -------
 
+0.15
+    Updated cached bank holidays file to include latest holidays published by GOV.UK.
+
 0.14
     Migrated test, build and release processes away from deprecated setuptools commands.
     Translation files are updated and compiled through scripts which are not included in distribution.
