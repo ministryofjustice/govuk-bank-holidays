@@ -76,6 +76,12 @@ Alternatively, you can use ``tox`` if you have multiple python versions.
 History
 -------
 
+0.16
+    Removed support for python versions older than 3.9 since they have reached end-of-life
+    and are not available for testing in Github Actions.
+    Added python 3.13 to testing matrix.
+    Updated cached bank holidays file to include latest holidays published by GOV.UK.
+
 0.15
     Updated cached bank holidays file to include latest holidays published by GOV.UK.
 
