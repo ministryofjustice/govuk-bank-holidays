@@ -34,12 +34,13 @@ class BankHolidays:
         with backup_path.open() as f:
             return json.load(f)
 
-    def __init__(self, locale=None, weekend=(5, 6), use_cached_holidays=False):
+    def __init__(self, locale=None, weekend=(5, 6), use_cached_holidays=False, download_timeout=10):
         """
         Load UK bank holidays
         :param locale: the locale into which holidays should be translated; defaults to no translation
         :param weekend: days of the week that are never work days; defaults to Saturday and Sunday
         :param use_cached_holidays: use the cached local copy of the holiday list
+        :param download_timeout: request timeout for downloading live holidays before falling back to cached data
         """
         self._get_known_holiday_date_set_cache = {}
         self.weekend = set(weekend)
@@ -48,7 +49,7 @@ class BankHolidays:
         else:
             try:
                 logger.debug(f'Downloading bank holidays from {self.source_url}')
-                data = requests.get(self.source_url).json()
+                data = requests.get(self.source_url, timeout=download_timeout).json()
             except (requests.RequestException, ValueError):
                 logger.warning('Using backup bank holiday data')
                 data = self.load_backup_data()
