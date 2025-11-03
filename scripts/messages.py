@@ -5,6 +5,8 @@ import pathlib
 import subprocess
 import sys
 
+logger = logging.getLogger(__name__)
+
 
 def main():
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -29,7 +31,7 @@ def main():
     root_path = pathlib.Path(__file__).parent.parent
     locale_path = root_path / 'govuk_bank_holidays' / 'locale'
     if not locale_path.is_dir():
-        logging.error('This script mst be run from the repository root')
+        logger.error('This script mst be run from the repository root')
         sys.exit(1)
 
     pot_name = f'{domain}.pot'
@@ -44,7 +46,7 @@ def main():
     ]
 
     if args.command == 'update':
-        logging.info('Writing intermediate POT file')
+        logger.info('Writing intermediate POT file')
         xgettext = [
             'xgettext',
             '--default-domain', domain,
@@ -64,14 +66,14 @@ def main():
             '--verbose',
         ]
         for locale in locales:
-            logging.info('Writing PO file for %s locale', locale)
+            logger.info('Writing PO file for %s locale', locale)
             po_path = locale_path / locale / 'LC_MESSAGES' / po_name
             subprocess.run(msgmerge + [po_path, pot_path], check=True)
 
     if args.command == 'compile':
         msgfmt = ['msgfmt', '--check', '--verbose']
         for locale in locales:
-            logging.info('Compiling PO file for %s locale', locale)
+            logger.info('Compiling PO file for %s locale', locale)
             po_path = locale_path / locale / 'LC_MESSAGES' / po_name
             mo_path = locale_path / locale / 'LC_MESSAGES' / mo_name
             subprocess.run(msgfmt + ['--output-file', mo_path, po_path], check=True)

@@ -6,6 +6,8 @@ import logging
 import pathlib
 import sys
 
+logger = logging.getLogger(__name__)
+
 
 def main():
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -15,7 +17,7 @@ def main():
 
     try:
         import govuk_bank_holidays
-        logging.debug('govuk_bank_holidays.__version__ = %s', govuk_bank_holidays.__version__)
+        logger.debug('govuk_bank_holidays.__version__ = %s', govuk_bank_holidays.__version__)
     except ImportError:
         root_path = pathlib.Path(__file__).parent.parent
         sys.path.insert(0, str(root_path.absolute()))
@@ -29,15 +31,15 @@ def update_cache():
     import requests
     from govuk_bank_holidays.bank_holidays import BankHolidays
 
-    logging.info('Updating cached bank holidays')
+    logger.info('Updating cached bank holidays')
     root_path = pathlib.Path(__file__).parent.parent
     cached_path = root_path / 'govuk_bank_holidays' / 'bank-holidays.json'
     with cached_path.open() as f:
         cached_data = json.load(f)
     event_count = sum(len(events['events']) for events in cached_data.values())
-    logging.info('Cached bank holidays event count is %d', event_count)
+    logger.info('Cached bank holidays event count is %d', event_count)
 
-    logging.info('Downloading bank holidays from %s', BankHolidays.source_url)
+    logger.info('Downloading bank holidays from %s', BankHolidays.source_url)
     latest_data = requests.get(BankHolidays.source_url).json()
     for division, latest_events in latest_data.items():
         cached_events_dict = dict(
@@ -56,9 +58,9 @@ def update_cache():
         )
     new_event_count = sum(len(events['events']) for events in cached_data.values())
     if new_event_count == event_count:
-        logging.info('Cached bank holidays event count is unchanged')
+        logger.info('Cached bank holidays event count is unchanged')
     else:
-        logging.info('New cached bank holidays event count is %d', new_event_count)
+        logger.info('New cached bank holidays event count is %d', new_event_count)
 
     with cached_path.open('w') as f:
         json.dump(cached_data, f, ensure_ascii=False, indent=2)
@@ -69,18 +71,18 @@ def update_cache():
 def check_divisions(cached_data):
     from govuk_bank_holidays.bank_holidays import BankHolidays
 
-    logging.info('Checking cached bank holiday divisions')
+    logger.info('Checking cached bank holiday divisions')
     cached_divisions = set(cached_data.keys())
     expected_divisions = set(BankHolidays.ALL_DIVISIONS)
     missing_divisions = expected_divisions - cached_divisions
     if missing_divisions:
-        logging.warning(
+        logger.warning(
             'Some expected divisions are missing in cached bank holidays: %s',
             ', '.join(missing_divisions),
         )
     unexpected_divisions = cached_divisions - expected_divisions
     if unexpected_divisions:
-        logging.warning(
+        logger.warning(
             'Unexpected divisions found, absent from BankHolidays.ALL_DIVISIONS: %s',
             ', '.join(unexpected_divisions),
         )
@@ -89,7 +91,7 @@ def check_divisions(cached_data):
 def check_i18n(cached_data):
     from govuk_bank_holidays.i18n import translatable_messages
 
-    logging.info('Checking cached bank holidays for inclusion in translation module')
+    logger.info('Checking cached bank holidays for inclusion in translation module')
     event_messages = set()
     events = itertools.chain.from_iterable(events['events'] for events in cached_data.values())
     for event in events:
@@ -99,8 +101,9 @@ def check_i18n(cached_data):
     untranslatable_messages = event_messages - translatable_messages
     if untranslatable_messages:
         untranslatable_messages = '\n- '.join(untranslatable_messages)
-        logging.warning(
-            f'Translation markers missing from govuk_bank_holidays.i18n:\n- {untranslatable_messages}',
+        logger.warning(
+            'Translation markers missing from govuk_bank_holidays.i18n:\n- %s',
+            untranslatable_messages,
         )
 
 

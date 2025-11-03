@@ -49,9 +49,6 @@ Development
 .. image:: https://github.com/ministryofjustice/govuk-bank-holidays/actions/workflows/test.yml/badge.svg?branch=main
     :target: https://github.com/ministryofjustice/govuk-bank-holidays/actions/workflows/test.yml
 
-.. image:: https://github.com/ministryofjustice/govuk-bank-holidays/actions/workflows/lint.yml/badge.svg?branch=main
-    :target: https://github.com/ministryofjustice/govuk-bank-holidays/actions/workflows/lint.yml
-
 Please report bugs and open pull requests on `GitHub`_.
 
 To work on changes to this library, it’s recommended to install it in editable mode into a virtual environment,
@@ -75,6 +72,10 @@ Alternatively, you can use ``tox`` if you have multiple python versions.
 
 History
 -------
+
+0.18
+    Added support for python 3.14 and removed 3.9 which has reached end-of-life.
+    Migrated to trusted publishing.
 
 0.17
     Added timeout for source downloads (default being GOV.UK) before falling back to cache.
