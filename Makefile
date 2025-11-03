@@ -35,7 +35,7 @@ test-all:
 
 coverage:
 	pip install --upgrade coverage
-	coverage run setup.py test
+	coverage run tests
 	coverage report --show-missing
 
 lint:
@@ -43,7 +43,7 @@ lint:
 	flake8 --verbose
 
 release: clean
-	pip install -r requirements-release.txt
+	pip install build twine
 	python scripts/messages.py compile
 	python -m build
 	twine upload dist/*
