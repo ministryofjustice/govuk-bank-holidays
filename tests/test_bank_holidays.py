@@ -48,19 +48,19 @@ class BankHolidayTestCase(unittest.TestCase):
         holidays_2018_to_2022 = [holiday for holiday in holidays if 2018 <= holiday['date'].year <= 2022]
         self.assertEqual(len(holidays_2018_to_2022), BACKUP_DATA_ENGLAND_AND_WALES_HOLIDAY_COUNT)
         self.assertExpectedFormat(holidays)
-        self.assertNotIn('St Patrick’s Day', map(lambda holiday: holiday['title'], holidays))
+        self.assertNotIn('St Patrick’s Day', (holiday['title'] for holiday in holidays))
 
         holidays = bank_holidays.get_holidays(division=BankHolidays.SCOTLAND)
         holidays_2018_to_2022 = [holiday for holiday in holidays if 2018 <= holiday['date'].year <= 2022]
         self.assertEqual(len(holidays_2018_to_2022), BACKUP_DATA_SCOTLAND_HOLIDAY_COUNT)
         self.assertExpectedFormat(holidays)
-        self.assertIn('St Andrew’s Day', map(lambda holiday: holiday['title'], holidays))
+        self.assertIn('St Andrew’s Day', (holiday['title'] for holiday in holidays))
 
         holidays = bank_holidays.get_holidays(division=BankHolidays.NORTHERN_IRELAND)
         holidays_2018_to_2022 = [holiday for holiday in holidays if 2018 <= holiday['date'].year <= 2022]
         self.assertEqual(len(holidays_2018_to_2022), BACKUP_DATA_NORTHERN_IRELAND_HOLIDAY_COUNT)
         self.assertExpectedFormat(holidays)
-        self.assertIn('St Patrick’s Day', map(lambda holiday: holiday['title'], holidays))
+        self.assertIn('St Patrick’s Day', (holiday['title'] for holiday in holidays))
 
     def test_holidays_for_year(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
@@ -74,12 +74,12 @@ class BankHolidayTestCase(unittest.TestCase):
         holidays = bank_holidays.get_holidays(division=BankHolidays.NORTHERN_IRELAND, year=2016)
         self.assertEqual(len(holidays), 10)
         self.assertExpectedFormat(holidays)
-        self.assertIn('Battle of the Boyne (Orangemen’s Day)', map(lambda holiday: holiday['title'], holidays))
+        self.assertIn('Battle of the Boyne (Orangemen’s Day)', (holiday['title'] for holiday in holidays))
         self.assertTrue(all(holiday['date'].year == 2016 for holiday in holidays))
 
     def test_holiday_iterator(self):
         bank_holidays = self.get_bank_holidays_using_local_data()
-        holidays_1 = [holiday for holiday in bank_holidays]
+        holidays_1 = list(bank_holidays)
         holidays_2 = bank_holidays.get_holidays(year=datetime.date.today().year)
         self.assertListEqual(holidays_1, holidays_2)
 
@@ -184,14 +184,14 @@ class BankHolidayTestCase(unittest.TestCase):
     def test_localisation(self):
         bank_holidays = self.get_bank_holidays_using_local_data(locale='cy')  # Welsh
         holidays = bank_holidays.get_holidays(division=BankHolidays.ENGLAND_AND_WALES)
-        holiday_names = set(holiday['title'] for holiday in holidays)
+        holiday_names = {holiday['title'] for holiday in holidays}
         self.assertIn('Dydd Nadolig', holiday_names)
         self.assertNotIn('Christmas Day', holiday_names)
 
     def test_localisation_fallback(self):
         bank_holidays = self.get_bank_holidays_using_local_data(locale='gd')  # Scottish Gaelic
         holidays = bank_holidays.get_holidays(division=BankHolidays.SCOTLAND)
-        holiday_names = set(holiday['title'] for holiday in holidays)
+        holiday_names = {holiday['title'] for holiday in holidays}
         self.assertIn('Christmas Day', holiday_names)
         self.assertNotIn('Latha na Nollaige', holiday_names)
 

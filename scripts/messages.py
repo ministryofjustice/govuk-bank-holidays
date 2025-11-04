@@ -71,7 +71,7 @@ def main():
             subprocess.run(msgmerge + [po_path, pot_path], check=True)
 
     if args.command == 'compile':
-        msgfmt = ['msgfmt', '--check', '--verbose']
+        msgfmt = ['msgfmt', '--check', '--use-fuzzy', '--verbose']
         for locale in locales:
             logger.info('Compiling PO file for %s locale', locale)
             po_path = locale_path / locale / 'LC_MESSAGES' / po_name

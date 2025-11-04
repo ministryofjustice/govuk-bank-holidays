@@ -110,7 +110,7 @@ class BankHolidays:
             dates_in_common = functools.reduce(
                 set.intersection,
                 (
-                    set(map(lambda holiday: holiday['date'], division_holidays))
+                    {holiday['date'] for holiday in division_holidays}
                     for division, division_holidays in self.data.items()
                 ),
             )
@@ -125,10 +125,10 @@ class BankHolidays:
         NB: If no division is specified, only holidays common to *all* divisions are returned.
         """
         if division not in self._get_known_holiday_date_set_cache:
-            self._get_known_holiday_date_set_cache[division] = set(
+            self._get_known_holiday_date_set_cache[division] = {
                 holiday['date']
                 for holiday in self.get_holidays(division=division)
-            )
+            }
         return self._get_known_holiday_date_set_cache[division]
 
     def is_holiday(self, date, division=None):
