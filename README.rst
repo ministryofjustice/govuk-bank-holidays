@@ -73,6 +73,9 @@ Alternatively, you can use ``tox`` if you have multiple python versions.
 History
 -------
 
+0.19
+    Updated cached bank holidays file to include latest holidays published by GOV.UK.
+
 0.18
     Added support for python 3.14 and removed 3.9 which has reached end-of-life.
     Migrated to trusted publishing.
