@@ -153,7 +153,7 @@ History
 Copyright
 ---------
 
-Copyright (C) 2025 HM Government (Ministry of Justice Digital & Technology).
+Copyright (C) 2026 HM Government (Ministry of Justice Digital & Technology).
 See LICENSE.txt for further details.
 
 .. _GOV.UK: https://www.gov.uk/bank-holidays
